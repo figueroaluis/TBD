@@ -5,4 +5,7 @@ package com.figueroaluis.finalproject271;
  */
 
 public class Task {
+    public Task(){
+
+    }
 }
