@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fillViewport="true"
+    >
+
+    <ImageButton
+        android:id="@+id/cancel_new_task_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="?android:attr/floatingToolbarCloseDrawable" />
+
+    <TextView
+        android:id="@+id/add_task_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/cancel_new_task_button"
+        android:layout_below="@+id/cancel_new_task_button"
+        android:layout_marginTop="29dp"
+        android:layout_marginStart="10dp"
+        android:text="Task Title" />
+
+    <EditText
+        android:id="@+id/add_task_title_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_alignBaseline="@+id/add_task_title"
+        android:layout_alignBottom="@+id/add_task_title"
+        android:layout_toEndOf="@+id/add_task_title"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Title" />
+
+    <TextView
+        android:id="@+id/add_task_date_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/add_task_date_input"
+        android:layout_alignBottom="@+id/add_task_date_input"
+        android:layout_alignStart="@+id/add_task_title"
+        android:text="Task Date" />
+
+    <EditText
+        android:id="@+id/add_task_date_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/add_task_title_input"
+        android:layout_below="@+id/add_task_title_input"
+        android:ems="10"
+        android:inputType="date"
+        android:text="Date 00/00/00 Format" />
+
+    <TextView
+        android:id="@+id/add_task_tags_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/add_task_tags_input"
+        android:layout_alignBottom="@+id/add_task_tags_input"
+        android:layout_alignStart="@+id/add_task_date_title"
+        android:text="Tags" />
+
+    <EditText
+        android:id="@+id/add_task_tags_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignStart="@+id/add_task_date_input"
+        android:layout_below="@+id/add_task_date_input"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Tasks separated by commas" />
+
+    <TextView
+        android:id="@+id/add_task_importance_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/add_task_importance_dropdown"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="14dp"
+        android:layout_marginStart="10dp"
+        android:text="Importance" />
+
+    <Spinner
+        android:id="@+id/add_task_importance_dropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_task_tags_input"
+        android:layout_alignStart="@id/add_task_add_button"
+        android:layout_marginStart="50dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
+    <EditText
+        android:id="@+id/add_task_description_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/add_task_audio_button"
+        android:layout_alignStart="@+id/add_task_tags_input"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="Task Description" />
+
+    <ImageButton
+        android:id="@+id/add_task_audio_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/add_task_importance_dropdown"
+        app:srcCompat="@android:drawable/ic_btn_speak_now" />
+
+    <Button
+        android:id="@+id/add_task_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Add Task" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/add_task_add_button"
+        android:layout_centerHorizontal="true"
+        >
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/radioButton5"
+            android:layout_below="@+id/radioButton5"
+            android:layout_weight="1"
+            android:text="RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="RadioButton" />
+    </RadioGroup>
+
+</RelativeLayout>
