@@ -10,8 +10,9 @@
     <ImageButton
         android:id="@+id/cancel_new_task_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-        <!--app:srcCompat="?android:attr/floatingToolbarCloseDrawable" />-->
+        android:layout_height="wrap_content"
+        android:contextClickable="false"
+        app:srcCompat="?android:attr/floatingToolbarCloseDrawable" />
 
     <TextView
         android:id="@+id/add_task_title"
@@ -97,9 +98,9 @@
 
     <EditText
         android:id="@+id/add_task_description_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/add_task_audio_button"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_alignTop="@+id/add_task_audio_button"
         android:layout_alignStart="@+id/add_task_tags_input"
         android:ems="10"
         android:inputType="textMultiLine"
@@ -109,10 +110,21 @@
         android:id="@+id/add_task_audio_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_marginStart="15dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/add_task_importance_dropdown"
         app:srcCompat="@android:drawable/ic_btn_speak_now" />
+
+    <Spinner
+        android:id="@+id/add_task_primary_tag_dropdown"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_task_description_input"
+        android:layout_alignStart="@id/add_task_description_input"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown" />
+
+
 
     <Button
         android:id="@+id/add_task_add_button"
@@ -121,29 +133,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Add Task" />
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/add_task_add_button"
-        android:layout_centerHorizontal="true"
-        >
-
-        <RadioButton
-            android:id="@+id/radioButton6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/radioButton5"
-            android:layout_below="@+id/radioButton5"
-            android:layout_weight="1"
-            android:text="RadioButton" />
-
-        <RadioButton
-            android:id="@+id/radioButton5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="RadioButton" />
-    </RadioGroup>
 
 </RelativeLayout>
