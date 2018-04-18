@@ -13,6 +13,7 @@
         android:text="Cancel"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:onClick="cancelTask"
         />
 
     <TextView
@@ -132,7 +133,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/add_task_primary_tag_dropdown"
         android:layout_centerHorizontal="true"
-        android:text="Add Task" />
+        android:text="Add Task"
+        android:onClick="addTask"
+        />
 
 
 
