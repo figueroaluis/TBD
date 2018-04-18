@@ -4,29 +4,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     >
 
-    <ImageButton
+    <Button
         android:id="@+id/cancel_new_task_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contextClickable="false"/>
-        <!--app:srcCompat="?android:attr/floatingToolbarCloseDrawable" />-->
+        android:text="Cancel"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        />
 
     <TextView
         android:id="@+id/add_task_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/cancel_new_task_button"
-        android:layout_below="@+id/cancel_new_task_button"
-        android:layout_marginTop="29dp"
-        android:layout_marginStart="10dp"
+        android:layout_alignStart="@+id/add_task_importance_title"
+        android:layout_below="@id/cancel_new_task_button"
+        android:layout_marginTop="25dp"
         android:text="Task Title" />
 
     <EditText
         android:id="@+id/add_task_title_input"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_alignBaseline="@+id/add_task_title"
@@ -130,8 +130,10 @@
         android:id="@+id/add_task_add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/add_task_primary_tag_dropdown"
         android:layout_centerHorizontal="true"
         android:text="Add Task" />
+
+
 
 </RelativeLayout>
