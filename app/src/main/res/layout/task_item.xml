@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.app.AlertController.RecycleView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tasks_list_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
 
     <ListView
-        android:id="@+id/sub_task_list_view"
+        android:id="@+id/task_item_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-
-</android.support.v7.app.AlertController.RecycleView>
+</RelativeLayout>
