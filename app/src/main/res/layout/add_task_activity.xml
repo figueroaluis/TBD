@@ -11,8 +11,8 @@
         android:id="@+id/cancel_new_task_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contextClickable="false"
-        app:srcCompat="?android:attr/floatingToolbarCloseDrawable" />
+        android:contextClickable="false"/>
+        <!--app:srcCompat="?android:attr/floatingToolbarCloseDrawable" />-->
 
     <TextView
         android:id="@+id/add_task_title"

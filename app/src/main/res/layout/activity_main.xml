@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.figueroaluis.finalproject271.MainActivity"
-    android:fitsSystemWindows="true">
+    android:id="@+id/main_layout">
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_menu"
