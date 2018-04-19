@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity {
     private Activity mActivity;
     private RelativeLayout addTaskLayout;
     private RelativeLayout mRelativeLayout;
-//    private DrawerLayout mDrawerLayout;
     private FloatingActionButton add_to_do_button;
     private ListView mListView;
+    private ArrayList<TaskList> MainItemLists;
 
 
 
@@ -34,16 +34,12 @@ public class MainActivity extends AppCompatActivity {
         mContext = getApplicationContext();
         // get the main activity
         mActivity = MainActivity.this;
+        mRelativeLayout = findViewById(R.id.main_layout);
+
 
         // ---------- Main Lists -----------
         // data to display
-        final ArrayList<TaskList> MainItemLists = new ArrayList<>();
-        final TaskList INBOX_LIST = new TaskList("Inbox", new ArrayList<Task>());
-        final TaskList TODAY = new TaskList("Today", new ArrayList<Task>());
-        final TaskList THIS_WEEK = new TaskList("This Week", new ArrayList<Task>());
-        MainItemLists.add(INBOX_LIST);
-        MainItemLists.add(TODAY);
-        MainItemLists.add(THIS_WEEK);
+        MainItemLists = new TaskListsDefault().defaultLists;
         TaskListAdapter adapter = new TaskListAdapter(mContext, MainItemLists);
         mListView = findViewById(R.id.main_lists_list_view);
         mListView.setAdapter(adapter);
@@ -59,11 +55,7 @@ public class MainActivity extends AppCompatActivity {
         // ----------- End Main Lists, try to put in another file ----------
 
 
-        // create the adapter
-        mRelativeLayout = findViewById(R.id.main_layout);
         add_to_do_button =  findViewById(R.id.add_to_do_button);
-
-
         // first set on click listener to open the second activity
         add_to_do_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
 
         // add new functions to make the app work better
     }
