@@ -28,11 +28,14 @@ public class CalendarActivity extends AppCompatActivity {
         calendarList = findViewById(R.id.calendar_listview);
         backButton = findViewById(R.id.calendar_back_button);
         date = calendarView.getDate();
+
+        // On click equivalent
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener(){
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth){
                 date = calendarView.getDate();
                 Toast.makeText(mContext, "Year: " + year + " Month: " + month + " Day: " + dayOfMonth,Toast.LENGTH_LONG).show();
+
 
 
             }
