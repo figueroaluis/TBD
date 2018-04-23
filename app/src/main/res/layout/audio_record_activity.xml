@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/audio_record_back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/cancel_button" />
+
+    <Button
+        android:id="@+id/audio_record_start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="154dp"
+        android:text="Start Recording" />
+
+    <Button
+        android:id="@+id/audio_record_stop_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/audio_record_start_button"
+        android:layout_marginEnd="18dp"
+        android:text="Stop Recording" />
+
+    <Button
+        android:id="@+id/audio_record_save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="58dp"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/audio_record_start_playback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/audio_record_start_button"
+        android:layout_marginBottom="218dp"
+        android:text="Start Playback" />
+
+    <Button
+        android:id="@+id/audio_record_stop_playback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/audio_record_stop_button"
+        android:layout_alignTop="@+id/audio_record_start_playback"
+        android:text="Stop Playback" />
+</RelativeLayout>
