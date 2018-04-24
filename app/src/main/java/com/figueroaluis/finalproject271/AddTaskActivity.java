@@ -1,5 +1,6 @@
 package com.figueroaluis.finalproject271;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by luisfigueroa on 4/17/18.
@@ -28,6 +30,8 @@ public class AddTaskActivity extends AppCompatActivity {
     private String importanceSelect;
     private ImageButton audioRecordButton;
     private String audioFilePath;
+    private EditText add_task_tags_input;
+    private EditText add_task_description_input;
 
 
     @Override
@@ -37,6 +41,11 @@ public class AddTaskActivity extends AppCompatActivity {
         final ArrayList<String> importanceList = new ArrayList<String>();
         audioRecordButton = findViewById(R.id.add_task_audio_button);
         Spinner importanceDropdown = findViewById(R.id.add_task_importance_dropdown);
+        add_task_title_input = findViewById(R.id.add_task_title_input);
+        add_task_date_input = findViewById(R.id.add_task_date_input);
+        add_task_tags_input = findViewById(R.id.add_task_tags_input);
+        add_task_description_input = findViewById(R.id.add_task_description_input);
+        audioFilePath = "";
         importanceList.add("Normal");
         importanceList.add("Low Priority");
         importanceList.add("Important");
@@ -71,6 +80,22 @@ public class AddTaskActivity extends AppCompatActivity {
     public void addTask(View view){
         Intent addTask = new Intent(getApplicationContext(), MainActivity.class);
         // need to add access to SQLite or something else here
+        AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
+        TaskDAO taskDAO = database.getTaskDAO();
+        Task task = new Task();
+        task.setTitle(add_task_title_input.getText().toString());
+        String[] date = (add_task_date_input.getText().toString().split("/"));
+        String dateStr = "";
+        for(String s:date){
+            dateStr += s;
+        }
+        task.setDate(Long.parseLong(dateStr));
+        task.setDescription(add_task_description_input.getText().toString());
+        task.setAudioFileName(audioFilePath);
+        task.setImportance(importanceSelect);
+        task.setTags(add_task_tags_input.getText().toString());
+        task.setTime("00:00");
+        taskDAO.insert(task);
         this.startActivity(addTask);
     }
 
