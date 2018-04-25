@@ -18,7 +18,7 @@ public class TaskListsDefault{
         final TaskList THIS_WEEK = new TaskList("This Week", new ArrayList<Task>());
 
         // this is just a place holder
-        final TaskList THIS_WEEK2 = new TaskList("This Week", new ArrayList<Task>());
+        final TaskList THIS_WEEK2 = new TaskList("My List", new ArrayList<Task>());
         final TaskList ADD_NEW_LIST = new TaskList("Create List...", new ArrayList<Task>());
 
         defaultLists.add(INBOX_LIST);
