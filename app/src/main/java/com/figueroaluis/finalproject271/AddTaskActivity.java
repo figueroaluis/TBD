@@ -79,17 +79,11 @@ public class AddTaskActivity extends AppCompatActivity {
 
     public void addTask(View view){
         Intent addTask = new Intent(getApplicationContext(), MainActivity.class);
-        // need to add access to SQLite or something else here
         AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
         TaskDAO taskDAO = database.getTaskDAO();
         Task task = new Task();
         task.setTitle(add_task_title_input.getText().toString());
-        String[] date = (add_task_date_input.getText().toString().split("/"));
-        String dateStr = "";
-        for(String s:date){
-            dateStr += s;
-        }
-        task.setDate(Long.parseLong(dateStr));
+        task.setDate(add_task_date_input.getText().toString());
         task.setDescription(add_task_description_input.getText().toString());
         task.setAudioFileName(audioFilePath);
         task.setImportance(importanceSelect);

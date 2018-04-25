@@ -27,6 +27,12 @@ public interface TaskDAO {
     @Query("SELECT * FROM tasks WHERE importance = :importance")
     public List<Task> getTaskWithImportance(String importance);
 
+    @Query("SELECT * FROM tasks WHERE primaryTag = :primaryTag")
+    public List<Task> getTaskWithPrimaryTag(String primaryTag);
+
     @Query("SELECT * FROM tasks WHERE date BETWEEN :start AND :end")
-    public List<Task> getTaskByDateRange(long start, long end);
+    public List<Task> getTaskByDateRange(String start, String end);
+
+    @Query("SELECT * FROM tasks WHERE taskID = :taskID")
+    public Task getTaskbyID(long taskID);
 }

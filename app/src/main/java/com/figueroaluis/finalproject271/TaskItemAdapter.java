@@ -64,7 +64,7 @@ public class TaskItemAdapter extends BaseAdapter {
         taskTitleTextView.setText(task.getTitle());
         taskTitleTextView.setTextSize(18);
 
-        taskDateTextView.setText(Long.toString(task.getDate()));
+        taskDateTextView.setText(task.getDate());
         taskDateTextView.setTextSize(14);
 
         taskTimeTextView.setText(task.getTime());

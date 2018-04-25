@@ -23,20 +23,19 @@ public class Task {
     private long taskID;
     private String title;
     private String description;
-    private long date;
+    private String date;
     private String time;
     private String tags;
     private String importance;
     private String audioFileName;
+    private String primaryTag;
 
-    public Task(String title, String description, long date, String time, String tags, String importance, String audioFileName) {
-        this.title = title;
-        this.description = description;
-        this.date = date;
-        this.time = time;
-        this.tags = tags;
-        this.importance = importance;
-        this.audioFileName = audioFileName;
+    public String getPrimaryTag() {
+        return primaryTag;
+    }
+
+    public void setPrimaryTag(String primaryTag) {
+        this.primaryTag = primaryTag;
     }
 
     public Task(){
@@ -55,7 +54,7 @@ public class Task {
     public void setTaskID(long taskID) {
         this.taskID = taskID;
     }
-    
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -68,11 +67,11 @@ public class Task {
         this.description = description;
     }
 
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

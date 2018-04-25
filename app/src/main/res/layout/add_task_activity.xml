@@ -55,7 +55,7 @@
         android:layout_below="@+id/add_task_title_input"
         android:ems="10"
         android:inputType="date"
-        android:text="Date: Year/Month/Day 0000/00/00" />
+        android:text="Date: Year-Month-Day 0000-00-00" />
 
     <TextView
         android:id="@+id/add_task_tags_title"

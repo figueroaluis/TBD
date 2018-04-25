@@ -50,7 +50,8 @@ public class TaskItemList extends AppCompatActivity {
                 Task selectedTask = taskList.get(position);
                 Intent detailIntent = new Intent(mContext, TaskDetailActivity.class);
 
-                detailIntent.putExtra("title", selectedTask.getTitle());
+                detailIntent.putExtra("taskID", selectedTask.getTaskID());
+
 
                 startActivity(detailIntent);
             }
