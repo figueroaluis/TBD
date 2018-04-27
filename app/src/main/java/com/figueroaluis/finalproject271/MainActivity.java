@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 
@@ -72,5 +74,34 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // add new functions to make the app work better
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case R.id.calendar_menu_button:
+                Intent cal_intent = new Intent(this, CalendarActivity.class);
+                startActivity(cal_intent);
+                return true;
+//            case R.id.email_overview_menu_button:
+//                Intent email_intent = new Intent(this, EmailActivity.class);
+//                startActivity(email_intent);
+//                return true;
+//            case R.id.settings_menu_button:
+//                Intent settings_intent = new Intent(this, SettingsActivity.class);
+//                startActivity(settings_intent);
+//                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+        
+
     }
 }
