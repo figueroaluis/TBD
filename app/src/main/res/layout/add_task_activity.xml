@@ -55,7 +55,7 @@
         android:layout_below="@+id/add_task_title_input"
         android:ems="10"
         android:inputType="date"
-        android:text="Date 00/00/00 Format" />
+        android:text="Date: Year-Month-Day 0000-00-00" />
 
     <TextView
         android:id="@+id/add_task_tags_title"
@@ -75,7 +75,7 @@
         android:layout_below="@+id/add_task_date_input"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Tasks separated by commas" />
+        android:text="Tags separated by commas" />
 
     <TextView
         android:id="@+id/add_task_importance_title"

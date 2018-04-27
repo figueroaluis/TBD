@@ -1,5 +1,6 @@
 package com.figueroaluis.finalproject271;
 
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ public class TaskItemList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.task_item);
         mContext = this;
+        /*
         ArrayList<String> tags = new ArrayList<String>();
         tags.add("Tag 1, Tag two, Tag three");
         Task task1 = new Task("Makeshift Title 1", "Makeshift Description 1", "99/99/9999", "99:99 a.m.", tags, "Important", "Audio.mp3");
@@ -33,6 +35,11 @@ public class TaskItemList extends AppCompatActivity {
         taskList.add(task1);
         taskList.add(task2);
         taskList.add(task3);
+        */
+        AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
+        TaskDAO taskDAO = database.getTaskDAO();
+        final ArrayList<Task> taskList = new ArrayList<>();
+        taskList.addAll(taskDAO.getTasks());
         TaskItemAdapter adapter = new TaskItemAdapter(mContext, taskList);
         mListView = findViewById(R.id.task_item_listview);
         mListView.setAdapter(adapter);
@@ -43,7 +50,8 @@ public class TaskItemList extends AppCompatActivity {
                 Task selectedTask = taskList.get(position);
                 Intent detailIntent = new Intent(mContext, TaskDetailActivity.class);
 
-                detailIntent.putExtra("title", selectedTask.getTitle());
+                detailIntent.putExtra("taskID", selectedTask.getTaskID());
+
 
                 startActivity(detailIntent);
             }
