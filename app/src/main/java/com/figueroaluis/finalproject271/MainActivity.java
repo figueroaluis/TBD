@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.support.v7.widget.Toolbar;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Activity mActivity;
     private RelativeLayout addTaskLayout;
     private RelativeLayout mRelativeLayout;
+    private Toolbar mToolbar;
     private FloatingActionButton add_to_do_button;
     private ListView mListView;
     private ArrayList<TaskList> MainItemLists;
@@ -35,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
         // get the main activity
         mActivity = MainActivity.this;
         mRelativeLayout = findViewById(R.id.main_layout);
+        // set the tool bar
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+
 
 
         // ---------- Main Lists -----------

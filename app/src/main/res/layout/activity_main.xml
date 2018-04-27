@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,7 +8,31 @@
     tools:context="com.figueroaluis.finalproject271.MainActivity"
     android:id="@+id/main_layout">
 
-    <include layout="@layout/main_lists_layout"/>
+    <LinearLayout
+        android:id="@+id/main_coord_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            app:elevation="4dp">
+
+            <include layout="@layout/main_screen_toolbar" />
+        </android.support.design.widget.AppBarLayout>
+
+        <include layout="@layout/main_lists_layout" />
+
+
+    </LinearLayout>
+
+
+
 
 
 </RelativeLayout>
