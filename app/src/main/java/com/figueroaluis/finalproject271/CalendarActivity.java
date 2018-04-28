@@ -71,6 +71,7 @@ public class CalendarActivity extends AppCompatActivity {
                     taskList.clear();
                     taskList.addAll(taskDAO.getTaskBySingleDate(year+"-"+monthOutput+"-"+dayOutput));
                     //taskList.addAll(taskDAO.getTasks());
+                    //Testing
                     adapter.notifyDataSetChanged();
 
                 }
