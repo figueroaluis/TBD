@@ -1,21 +1,27 @@
 package com.figueroaluis.finalproject271;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 /**
  * Created by luisfigueroa on 4/17/18.
@@ -32,7 +38,11 @@ public class AddTaskActivity extends AppCompatActivity {
     private String audioFilePath;
     private EditText add_task_tags_input;
     private EditText add_task_description_input;
-
+    private EditText add_task_time_input;
+    private TimePickerDialog timePicker;
+    private DatePickerDialog datePicker;
+    private String timeSelect;
+    private String dateSelect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -45,7 +55,9 @@ public class AddTaskActivity extends AppCompatActivity {
         add_task_date_input = findViewById(R.id.add_task_date_input);
         add_task_tags_input = findViewById(R.id.add_task_tags_input);
         add_task_description_input = findViewById(R.id.add_task_description_input);
+        add_task_time_input = findViewById(R.id.add_task_time_input);
         audioFilePath = "";
+        dateSelect="";
         importanceList.add("Normal");
         importanceList.add("Low Priority");
         importanceList.add("Important");
@@ -69,6 +81,45 @@ public class AddTaskActivity extends AppCompatActivity {
             }
         });
 
+        add_task_time_input.setInputType(InputType.TYPE_NULL);
+        add_task_time_input.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                timePicker = new TimePickerDialog(AddTaskActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+
+                        add_task_time_input.setText(String.format("%02d:%02d", hour, minute));
+                        timeSelect = hour+":"+minute;
+                    }
+                }, 0,0,true);
+                timePicker.show();
+            }
+        });
+
+        add_task_date_input.setInputType(InputType.TYPE_NULL);
+        add_task_date_input.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(calendar.YEAR);
+                int month = calendar.get(calendar.MONTH);
+                int day = calendar.get(calendar.DAY_OF_MONTH);
+
+                datePicker = new DatePickerDialog(AddTaskActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                        add_task_date_input.setText(month +"/"+dayOfMonth+"/"+year);
+                        dateSelect=year+"-"+month+"-"+dayOfMonth;
+                    }
+                }, year,month,day);
+                datePicker.show();
+            }
+        });
+
+
+
+
 
     }
 
@@ -83,12 +134,13 @@ public class AddTaskActivity extends AppCompatActivity {
         TaskDAO taskDAO = database.getTaskDAO();
         Task task = new Task();
         task.setTitle(add_task_title_input.getText().toString());
-        task.setDate(add_task_date_input.getText().toString());
+        task.setDate(dateSelect);
         task.setDescription(add_task_description_input.getText().toString());
         task.setAudioFileName(audioFilePath);
         task.setImportance(importanceSelect);
         task.setTags(add_task_tags_input.getText().toString());
-        task.setTime("00:00");
+        task.setTime(timeSelect);
+
         taskDAO.insert(task);
         this.startActivity(addTask);
     }
