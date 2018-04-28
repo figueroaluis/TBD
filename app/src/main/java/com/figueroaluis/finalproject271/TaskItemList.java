@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -19,12 +21,37 @@ public class TaskItemList extends AppCompatActivity {
 
     private Context mContext;
     private ListView mListView;
+    private Toolbar mToolBar;
+    TaskItemAdapter adapter;
+    private SearchView searchView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.task_item);
+        setContentView(R.layout.task_item_listview_layout);
         mContext = this;
+        mToolBar = findViewById(R.id.task_list_toolbar);
+        setSupportActionBar(mToolBar);
+
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        /*
+        mToolBar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_action_back));
+        mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //What to do on back clicked
+            }
+        });
+        */
+
+        searchView = findViewById(R.id.search);
+
         /*
         ArrayList<String> tags = new ArrayList<String>();
         tags.add("Tag 1, Tag two, Tag three");
@@ -36,11 +63,12 @@ public class TaskItemList extends AppCompatActivity {
         taskList.add(task2);
         taskList.add(task3);
         */
+
         AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
         TaskDAO taskDAO = database.getTaskDAO();
         final ArrayList<Task> taskList = new ArrayList<>();
         taskList.addAll(taskDAO.getTasks());
-        TaskItemAdapter adapter = new TaskItemAdapter(mContext, taskList);
+        adapter = new TaskItemAdapter(mContext, taskList);
         mListView = findViewById(R.id.task_item_listview);
         mListView.setAdapter(adapter);
 
@@ -52,11 +80,30 @@ public class TaskItemList extends AppCompatActivity {
 
                 detailIntent.putExtra("taskID", selectedTask.getTaskID());
 
-
                 startActivity(detailIntent);
             }
         });
 
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
 }

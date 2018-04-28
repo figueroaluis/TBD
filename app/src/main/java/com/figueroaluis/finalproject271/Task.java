@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class Task {
 
 
-
     @PrimaryKey(autoGenerate = true)
     private long taskID;
     private String title;

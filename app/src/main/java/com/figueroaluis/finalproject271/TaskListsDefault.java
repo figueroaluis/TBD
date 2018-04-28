@@ -1,5 +1,8 @@
 package com.figueroaluis.finalproject271;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -10,6 +13,7 @@ public class TaskListsDefault{
 
     // instance fields
     ArrayList<TaskList> defaultLists;
+    private StoreRetrieveMainListsData storeRetrieveData;
 
     public TaskListsDefault() {
         defaultLists = new ArrayList<>();
@@ -27,6 +31,18 @@ public class TaskListsDefault{
         // testing and placeholder
         defaultLists.add(ADD_NEW_LIST);
         // defaultLists.add(defaultLists.size()-1, THIS_WEEK2);
+    }
+
+
+
+
+
+    private void saveData(){
+        try{
+            storeRetrieveData.saveToFile(defaultLists);
+        } catch (JSONException | IOException e){
+            e.printStackTrace();
+        }
     }
 
 

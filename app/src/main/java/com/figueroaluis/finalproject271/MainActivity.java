@@ -14,6 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,9 +29,24 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton add_to_do_button;
     private ListView mListView;
     private ArrayList<TaskList> MainItemLists;
+    private StoreRetrieveMainListsData storeRetrieveData;
+    public static final String FILENAME = "mainLists.json";
+
+    public static ArrayList<TaskList> getLocallyStoredData(StoreRetrieveMainListsData storeRetrieveData){
+        ArrayList<TaskList> lists = null;
+        try {
+            lists  = storeRetrieveData.loadFromFile();
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+        if(lists == null){
+            lists = new ArrayList<>();
+        }
+        return lists;
+    }
 
 
-
+    // ---------------------- OnCreate() ----------------------- //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
-
+        // MainLists from json file
+        // storeRetrieveData = new StoreRetrieveMainListsData(this, FILENAME);
+        // MainItemLists = getLocallyStoredData(storeRetrieveData);
 
         // ---------- Main Lists -----------
         // data to display
@@ -64,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         add_to_do_button =  findViewById(R.id.add_to_do_button);
-        // first set on click listener to open the second activity
         add_to_do_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // add new functions to make the app work better
     }
 
     @Override
@@ -89,19 +107,19 @@ public class MainActivity extends AppCompatActivity {
                 Intent cal_intent = new Intent(this, CalendarActivity.class);
                 startActivity(cal_intent);
                 return true;
-//            case R.id.email_overview_menu_button:
-//                Intent email_intent = new Intent(this, EmailActivity.class);
-//                startActivity(email_intent);
-//                return true;
-//            case R.id.settings_menu_button:
-//                Intent settings_intent = new Intent(this, SettingsActivity.class);
-//                startActivity(settings_intent);
-//                return true;
+            /*
+            case R.id.email_overview_menu_button:
+                Intent email_intent = new Intent(this, EmailActivity.class);
+                startActivity(email_intent);
+                return true;
+            case R.id.settings_menu_button:
+                Intent settings_intent = new Intent(this, SettingsActivity.class);
+                startActivity(settings_intent);
+                return true;
+            */
             default:
                 return super.onOptionsItemSelected(item);
         }
-
-        
-
     }
+
 }
