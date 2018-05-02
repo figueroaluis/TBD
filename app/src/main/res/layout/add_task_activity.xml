@@ -44,18 +44,30 @@
         android:layout_alignBaseline="@+id/add_task_date_input"
         android:layout_alignBottom="@+id/add_task_date_input"
         android:layout_alignStart="@+id/add_task_title"
-        android:text="Task Date" />
+        android:text="Task Date/\nTime" />
 
     <EditText
         android:id="@+id/add_task_date_input"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignStart="@+id/add_task_title_input"
         android:layout_below="@+id/add_task_title_input"
         android:ems="10"
-        android:inputType="date"
-        android:text="Date 00/00/00 Format" />
+        android:gravity="center_horizontal"
+        android:focusableInTouchMode="false"
+        android:text="Enter Date" />
+
+    <EditText
+        android:id="@+id/add_task_time_input"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/add_task_date_input"
+        android:layout_alignBaseline="@id/add_task_date_input"
+        android:layout_marginStart="10dp"
+        android:ems="10"
+        android:focusableInTouchMode="false"
+        android:gravity="center_horizontal"
+        android:text="Enter Time" />
 
     <TextView
         android:id="@+id/add_task_tags_title"
@@ -75,7 +87,7 @@
         android:layout_below="@+id/add_task_date_input"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Tasks separated by commas" />
+        android:text="Tags separated by commas" />
 
     <TextView
         android:id="@+id/add_task_importance_title"
