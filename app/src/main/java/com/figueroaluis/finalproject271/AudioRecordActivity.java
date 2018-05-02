@@ -204,14 +204,22 @@ public class AudioRecordActivity extends AppCompatActivity {
 
     }
     private void startPlaying(){
-        mPlayer = new MediaPlayer();
-        try{
-            mPlayer.setDataSource(mFilePath);
-            mPlayer.prepare();
-            mPlayer.start();
-        }
-        catch(IOException e){
-            Toast.makeText(mContext,"No File to Play",Toast.LENGTH_SHORT).show();
+        if(mPlayer == null) {
+            mPlayer = new MediaPlayer();
+            mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    mPlayer.release();
+                    mPlayer = null;
+                }
+            });
+            try {
+                mPlayer.setDataSource(mFilePath);
+                mPlayer.prepare();
+                mPlayer.start();
+            } catch (IOException e) {
+                Toast.makeText(mContext, "No File to Play", Toast.LENGTH_SHORT).show();
+            }
         }
     }
     private void stopPlaying(){

@@ -24,6 +24,8 @@ public class TaskItemList extends AppCompatActivity {
     private Toolbar mToolBar;
     TaskItemAdapter adapter;
     private SearchView searchView;
+    private ArrayList<Task> taskList;
+    private TaskDAO taskDAO;
 
 
 
@@ -58,6 +60,7 @@ public class TaskItemList extends AppCompatActivity {
         Task task1 = new Task("Makeshift Title 1", "Makeshift Description 1", "99/99/9999", "99:99 a.m.", tags, "Important", "Audio.mp3");
         Task task2 = new Task("Makeshift Title 2", "Makeshift Description 2", "99/99/9999", "99:99 p.m.", tags, "Important", "Audio.mp3");
         Task task3 = new Task("Makeshift Title 3", "Makeshift Description 3", "99/99/9999", "99:99 a.m.", tags, "Important", "Audio.mp3");
+        Testing
         final ArrayList<Task> taskList = new ArrayList<Task>();
         taskList.add(task1);
         taskList.add(task2);
@@ -65,8 +68,8 @@ public class TaskItemList extends AppCompatActivity {
         */
 
         AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
-        TaskDAO taskDAO = database.getTaskDAO();
-        final ArrayList<Task> taskList = new ArrayList<>();
+        taskDAO = database.getTaskDAO();
+        taskList = new ArrayList<>();
         taskList.addAll(taskDAO.getTasks());
         adapter = new TaskItemAdapter(mContext, taskList);
         mListView = findViewById(R.id.task_item_listview);
@@ -105,5 +108,15 @@ public class TaskItemList extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        taskList.clear();
+        taskList.addAll(taskDAO.getTasks());
+        adapter.notifyDataSetChanged();
+
+    }
+
 
 }
