@@ -24,13 +24,15 @@ public class TaskDetailActivity extends AppCompatActivity{
     private ImageButton playAudioButton;
     private String audioFilePath;
     private MediaPlayer mPlayer;
+    private Task selectedTask;
+    private TaskDAO taskDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.task_detail_activity);
         AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
-        final TaskDAO taskDAO = database.getTaskDAO();
-        final Task selectedTask = taskDAO.getTaskbyID(this.getIntent().getExtras().getLong("taskID"));
+        taskDAO = database.getTaskDAO();
+        selectedTask = taskDAO.getTaskbyID(this.getIntent().getExtras().getLong("taskID"));
         playAudioButton = findViewById(R.id.task_detail_play_audio_button);
         audioFilePath = selectedTask.getAudioFileName();
         final EditText titleEditView = findViewById(R.id.task_detail_title);
@@ -107,4 +109,11 @@ public class TaskDetailActivity extends AppCompatActivity{
         Intent addTask = new Intent(getApplicationContext(), TaskItemList.class);
         this.startActivity(addTask);
     }
+
+    public void deleteTask(View view){
+        Intent deleteTask = new Intent(getApplicationContext(), TaskItemList.class);
+        taskDAO.delete(selectedTask);
+        this.startActivity(deleteTask);
+    }
+
 }

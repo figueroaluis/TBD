@@ -38,4 +38,9 @@ public interface TaskDAO {
 
     @Query("SELECT * FROM tasks WHERE date = :date")
     public List<Task> getTaskBySingleDate(String date);
+
+    @Query("DELETE FROM tasks")
+    public void nukeTable();
+
+
 }

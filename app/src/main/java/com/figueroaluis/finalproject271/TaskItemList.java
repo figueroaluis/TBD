@@ -24,6 +24,8 @@ public class TaskItemList extends AppCompatActivity {
     private Toolbar mToolBar;
     TaskItemAdapter adapter;
     private SearchView searchView;
+    private ArrayList<Task> taskList;
+    private TaskDAO taskDAO;
 
 
 
@@ -66,8 +68,8 @@ public class TaskItemList extends AppCompatActivity {
         */
 
         AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
-        TaskDAO taskDAO = database.getTaskDAO();
-        final ArrayList<Task> taskList = new ArrayList<>();
+        taskDAO = database.getTaskDAO();
+        taskList = new ArrayList<>();
         taskList.addAll(taskDAO.getTasks());
         adapter = new TaskItemAdapter(mContext, taskList);
         mListView = findViewById(R.id.task_item_listview);
@@ -106,5 +108,15 @@ public class TaskItemList extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        taskList.clear();
+        taskList.addAll(taskDAO.getTasks());
+        adapter.notifyDataSetChanged();
+
+    }
+
 
 }

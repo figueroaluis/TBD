@@ -23,6 +23,8 @@ public class CalendarActivity extends AppCompatActivity {
     private Button backButton;
     private ArrayList<Task> taskList;
     private ListView calendarListView;
+    private TaskDAO taskDAO;
+    private TaskItemAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -39,7 +41,7 @@ public class CalendarActivity extends AppCompatActivity {
 
         calendarView = findViewById(R.id.calendarView);
         calendarListView = findViewById(R.id.calendar_listview);
-        final TaskItemAdapter adapter = new TaskItemAdapter(mContext, taskList);
+        adapter = new TaskItemAdapter(mContext, taskList);
         calendarListView.setAdapter(adapter);
         calendarListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -55,7 +57,7 @@ public class CalendarActivity extends AppCompatActivity {
         });
         backButton = findViewById(R.id.calendar_back_button);
         AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
-        final TaskDAO taskDAO = database.getTaskDAO();
+        taskDAO = database.getTaskDAO();
 
         // On click equivalent
 
@@ -90,6 +92,15 @@ public class CalendarActivity extends AppCompatActivity {
 
         });
 
+
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        taskList.clear();
+        taskList.addAll(taskDAO.getTasks());
+        adapter.notifyDataSetChanged();
 
     }
 
