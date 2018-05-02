@@ -65,9 +65,9 @@ public class CalendarActivity extends AppCompatActivity {
                 month++;
                 String monthOutput = String.format(Locale.getDefault(),"%02d", month);
                 String dayOutput = String.format(Locale.getDefault(),"%02d", dayOfMonth);
-                Toast.makeText(mContext, "Year: " + year + " Month: " + month + " Day: " + dayOfMonth,Toast.LENGTH_LONG).show();
+                //Toast.makeText(mContext, "Year: " + year + " Month: " + month + " Day: " + dayOfMonth,Toast.LENGTH_LONG).show();
                 if(taskDAO.getTaskBySingleDate(year+"-"+monthOutput+"-"+dayOutput) != null){
-                    Toast.makeText(mContext, "getTask not null", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(mContext, "getTask not null", Toast.LENGTH_SHORT).show();
                     taskList.clear();
                     taskList.addAll(taskDAO.getTaskBySingleDate(year+"-"+monthOutput+"-"+dayOutput));
                     //taskList.addAll(taskDAO.getTasks());

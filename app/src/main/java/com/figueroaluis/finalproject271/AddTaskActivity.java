@@ -22,6 +22,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Created by luisfigueroa on 4/17/18.
@@ -89,8 +90,8 @@ public class AddTaskActivity extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
 
-                        add_task_time_input.setText(String.format("%02d:%02d", hour, minute));
-                        timeSelect = hour+":"+minute;
+                        timeSelect = String.format(Locale.getDefault(),"%02d:%02d", hour, minute);
+                        add_task_time_input.setText(timeSelect);
                     }
                 }, 0,0,true);
                 timePicker.show();
@@ -109,8 +110,9 @@ public class AddTaskActivity extends AppCompatActivity {
                 datePicker = new DatePickerDialog(AddTaskActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                        add_task_date_input.setText(month +"/"+dayOfMonth+"/"+year);
-                        dateSelect=year+"-"+month+"-"+dayOfMonth;
+                        month++;
+                        add_task_date_input.setText(String.format(Locale.getDefault(),"%02d/%02d/%02d", month, dayOfMonth, year));
+                        dateSelect=String.format(Locale.getDefault(),"%02d-%02d-%02d", year, month, dayOfMonth);
                     }
                 }, year,month,day);
                 datePicker.show();
