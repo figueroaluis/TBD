@@ -1,5 +1,7 @@
 package com.figueroaluis.finalproject271;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
 
 import org.json.JSONArray;
@@ -12,25 +14,27 @@ import java.util.ArrayList;
 /**
  * Created by luisfigueroa on 4/5/18.
  */
-
+@Entity(tableName = "tasks")
 public class Task {
 
+
+    @PrimaryKey(autoGenerate = true)
+    private long taskID;
     private String title;
     private String description;
     private String date;
     private String time;
-    private ArrayList<String> tags;
+    private String tags;
     private String importance;
     private String audioFileName;
+    private String primaryTag;
 
-    public Task(String title, String description, String date, String time, ArrayList<String> tags, String importance, String audioFileName) {
-        this.title = title;
-        this.description = description;
-        this.date = date;
-        this.time = time;
-        this.tags = tags;
-        this.importance = importance;
-        this.audioFileName = audioFileName;
+    public String getPrimaryTag() {
+        return primaryTag;
+    }
+
+    public void setPrimaryTag(String primaryTag) {
+        this.primaryTag = primaryTag;
     }
 
     public Task(){
@@ -40,6 +44,14 @@ public class Task {
     public String getTitle() {
 
         return title;
+    }
+
+    public long getTaskID() {
+        return taskID;
+    }
+
+    public void setTaskID(long taskID) {
+        this.taskID = taskID;
     }
 
     public void setTitle(String title) {
@@ -70,11 +82,11 @@ public class Task {
         this.time = time;
     }
 
-    public ArrayList<String> getTags() {
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(ArrayList<String> tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
 
@@ -111,7 +123,7 @@ public class Task {
             for(int i = 0; i < tasks.length(); i++){
                 Task task = new Task();
                 task.title = tasks.getJSONObject(i).getString("Event");
-                task.date = tasks.getJSONObject(i).getString("Date");
+                //task.date = tasks.getJSONObject(i).getString("Date");
                 taskList.add(task);
             }
 

@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -13,17 +15,22 @@ import java.util.ArrayList;
  * Created by Mshoga on 4/17/2018.
  */
 
-public class TaskItemAdapter extends BaseAdapter {
+public class TaskItemAdapter extends BaseAdapter implements Filterable {
 
     private Context mContext;
     private ArrayList<Task> mtaskList;
     private LayoutInflater mInflater;
+
+    private ArrayList<Task> originalTasks;
+    private ArrayList<Task> filteredTasks;
 
     public TaskItemAdapter(Context mContext, ArrayList<Task> mtaskList){
         this.mtaskList = mtaskList;
         this.mContext = mContext;
         mInflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        this.originalTasks = mtaskList;
+        this.filteredTasks = mtaskList;
     }
 
     @Override
@@ -74,6 +81,35 @@ public class TaskItemAdapter extends BaseAdapter {
 
     }
 
+    @Override
+    public Filter getFilter(){
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                FilterResults results = new FilterResults();
+                if(charSequence == null || charSequence.length() == 0){
+                    results.values = originalTasks;
+                    results.count = originalTasks.size();
+                } else{
+                    ArrayList<Task> filterResultData = new ArrayList<>();
+                    for(Task task: originalTasks){
+                        if(task.getTitle().toLowerCase().contains(charSequence.toString().toLowerCase())){
+                            filterResultData.add(task);
+                        }
+                    }
+                    results.values = filterResultData;
+                    results.count = filterResultData.size();
+                }
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mtaskList = (ArrayList<Task>)filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
 
 
 

@@ -1,5 +1,8 @@
 package com.figueroaluis.finalproject271;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -11,6 +14,8 @@ public class TaskList {
     // fields for this class
     String taskListName;
     ArrayList<Task> taskList;
+    private static final String TASKLISTNAME = "tasklistname";
+
 
     // use the default constructor
     public TaskList(String taskListName, ArrayList<Task> taskList) {
@@ -34,6 +39,19 @@ public class TaskList {
         this.taskList = taskList;
     }
 
+
+    // JSON Constructor
+    public TaskList(JSONObject jsonObject) throws JSONException{
+        taskListName = jsonObject.getString(TASKLISTNAME);
+    }
+
+
+    // JSON Stuff
+    public JSONObject toJSON() throws JSONException {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(TASKLISTNAME, taskListName);
+        return jsonObject;
+    }
 
 
 
