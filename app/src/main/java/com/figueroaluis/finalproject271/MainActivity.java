@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         // MainLists from json file
-        // storeRetrieveData = new StoreRetrieveMainListsData(this, FILENAME);
-        // MainItemLists = getLocallyStoredData(storeRetrieveData);
+        //storeRetrieveData = new StoreRetrieveMainListsData(this, FILENAME);
+        //MainItemLists = getLocallyStoredData(storeRetrieveData);
 
         // ---------- Main Lists -----------
         // data to display
