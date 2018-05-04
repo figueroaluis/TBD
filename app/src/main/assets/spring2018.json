@@ -3,196 +3,291 @@
     {
       "Event":"MLK Day"
     ,"Day":"Monday"
-    ,"Date":"Jan.15"
+    ,"Date":"2018-01-15"
     },
     {
       "Event":"Orientation for new students starting in the spring 2018"
     ,"Day":"Friday"
-    ,"Date":"Jan.19"
+    ,"Date":"2018-01-19"
     },
     {
       "Event":"Returning students move-in at 10 am"
     ,"Day":"Saturday"
-    ,"Date":"Jan.20"
+    ,"Date":"2018-01-20"
     },
     {
       "Event":"First day of classes"
     ,"Day":"Monday"
-    ,"Date":"Jan.22"
+    ,"Date":"2018-01-22"
     },
     {
       "Event":"Clearance"
     ,"Day":"Mon-Tues"
-    ,"Date":"Jan.22-23"
+    ,"Date":"2018-01-22"
+    },
+    {
+      "Event":"Clearance"
+    ,"Day":"Mon-Tues"
+    ,"Date":"2018-01-23"
     },
     {
       "Event":"Final day to withdraw for a 90% tuition refund"
     ,"Day":"Friday"
-    ,"Date":"Jan.29"
+    ,"Date":"2018-01-29"
     },
     {
       "Event":"Last day to add 4-unit classes and Independent Studies"
     ,"Day":"Friday"
-    ,"Date":"Feb.2"
+    ,"Date":"2018-02-02"
     },
     {
       "Event":"Final day to withdraw for a 80% tuition refund"
     ,"Day":"Monday"
-    ,"Date":"Feb.5"
+    ,"Date":"2018-02-05"
     },
     {
       "Event":"Applied music add deadline"
     ,"Day":"Friday"
-    ,"Date":"Feb.9"
+    ,"Date":"2018-02-09"
     },
     {
       "Event":"Final day to withdraw for a 70% tuition refund"
     ,"Day":"Monday"
-    ,"Date":"Feb.12"
+    ,"Date":"2018-02-12"
     },
     {
       "Event":"CR/NC Forms Due (last day of 4th week of semester)"
     ,"Day":"Friday"
-    ,"Date":"Feb.16"
+    ,"Date":"2018-02-16"
     },
     {
       "Event":"Applied music drop deadline "
     ,"Day":"Friday"
-    ,"Date":"Feb.16"
+    ,"Date":"2018-02-16"
     },
     {
       "Event":"Presidents' Day"
     ,"Day":"Monday "
-    ,"Date":"Feb.19"
+    ,"Date":"2018-02-19"
     },
     {
       "Event":"Final day to withdraw for a 60% tuition refund"
     ,"Day":"Tuesday"
-    ,"Date":"Feb.20"
+    ,"Date":"2018-02-20"
     },
     {
       "Event":"Census date"
     ,"Day":"Tuesday"
-    ,"Date":"Feb.20"
+    ,"Date":"2018-02-20"
     },
     {
       "Event":"Final day to withdraw for a 50% tuition refund"
     ,"Day":"Tuesday"
-    ,"Date":"Feb.27"
+    ,"Date":"2018-02-27"
     },
     {
       "Event":"Final day to change to part-time status with tuition adjustment"
     ,"Day":"Tuesday"
-    ,"Date":"Feb.27"
+    ,"Date":"2018-02-27"
     },
     {
       "Event":"Last day to drop classes without a \"W\""
     ,"Day":"Friday"
-    ,"Date":"Mar.2"
+    ,"Date":"2018-03-02"
     },
     {
       "Event":"Withdrawal Period Begins"
     ,"Day":"Monday"
-    ,"Date":"Mar.5"
+    ,"Date":"2018-03-05"
     },
     {
       "Event":"Spring Break"
     ,"Day":"Mon-Fri"
-    ,"Date":"Mar.12-16"
+    ,"Date":"2018-03-12"
+    },
+    {
+      "Event":"Spring Break"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-03-13"
+    },
+    {
+      "Event":"Spring Break"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-03-14"
+    },
+    {
+      "Event":"Spring Break"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-03-15"
+    },
+    {
+      "Event":"Spring Break"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-03-16"
     },
     {
       "Event":"Last Day to audit a class"
     ,"Day":"Monday"
-    ,"Date":"Mar.19"
+    ,"Date":"2018-03-19"
     },
     {
       "Event":"Mid-term"
     ,"Day":"Monday"
-    ,"Date":"Mar.19"
+    ,"Date":"2018-03-19"
     },
     {
       "Event":"Last day to add 1 & 2 unit classes"
     ,"Day":"Monday"
-    ,"Date":"Mar.19"
+    ,"Date":"2018-03-19"
     },
     {
       "Event":"Advising week"
     ,"Day":"Mon-Fri"
-    ,"Date":"Mar.26-30"
+    ,"Date":"2018-03-26"
+    },
+    {
+      "Event":"Advising week"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-03-27"
+    },
+    {
+      "Event":"Advising week"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-03-28"
+    },
+    {
+      "Event":"Advising week"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-03-29"
+    },
+    {
+      "Event":"Advising week"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-03-30"
     },
     {
       "Event":"Registration week for fall 2018"
     ,"Day":"Mon-Fri"
-    ,"Date":"Apr.2-6"
+    ,"Date":"2018-04-2"
+    },
+    {
+      "Event":"Registration week for fall 2018"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-04-3"
+    },
+    {
+      "Event":"Registration week for fall 2018"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-04-4"
+    },
+    {
+      "Event":"Registration week for fall 2018"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-04-5"
+    },
+    {
+      "Event":"Registration week for fall 2018"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-04-6"
     },
     {
       "Event":"Senior comps grades due to Registrar"
     ,"Day":"Monday"
-    ,"Date":"Apr.16"
+    ,"Date":"2018-04-16"
     },
     {
       "Event":"Last day to withdraw from classes"
     ,"Day":"Tuesday"
-    ,"Date":"May.1"
+    ,"Date":"2018-05-1"
     },
     {
       "Event":"Incomplete petitions due"
     ,"Day":"Tuesday"
-    ,"Date":"May.1"
+    ,"Date":"2018-05-1"
     },
     {
       "Event":"Last day of classes"
     ,"Day":"Tuesday"
-    ,"Date":"May.1"
+    ,"Date":"2018-05-1"
     },
     {
       "Event":"Reading days"
     ,"Day":"Wed-Thurs"
-    ,"Date":"May.2-3"
+    ,"Date":"2018-05-02"
+    },
+     {
+      "Event":"Reading days"
+    ,"Day":"Wed-Thurs"
+    ,"Date":"2018-05-03"
     },
     {
       "Event":"Final exams"
     ,"Day":"Friday"
-    ,"Date":"May.4"
+    ,"Date":"2018-05-04"
     },
     {
       "Event":"Reading Days"
     ,"Day":"Sat-Sun"
-    ,"Date":"May.5-6"
+    ,"Date":"2018-05-05"
+    },
+    {
+      "Event":"Reading Days"
+    ,"Day":"Sat-Sun"
+    ,"Date":"2018-05-06"
     },
     {
       "Event":"Final exams"
     ,"Day":"Mon-Fri"
-    ,"Date":"May.7-11"
+    ,"Date":"2018-05-07"
+    },
+    {
+      "Event":"Final exams"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-05-08"
+    },
+    {
+      "Event":"Final exams"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-05-09"
+    },
+    {
+      "Event":"Final exams"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-05-10"
+    },
+    {
+      "Event":"Final exams"
+    ,"Day":"Mon-Fri"
+    ,"Date":"2018-05-11"
     },
     {
       "Event":"Residence halls close for non-graduating students at 10 am or 24 hours after the last final exam (whichever happens first)"
     ,"Day":"Sunday"
-    ,"Date":"May.13"
+    ,"Date":"2018-05-13"
     },
     {
       "Event":"Senior grades due"
     ,"Day":"Tuesday"
-    ,"Date":"May.15"
+    ,"Date":"2018-05-15"
     },
     {
       "Event":"Commencement"
     ,"Day":"Sunday"
-    ,"Date":"May.20"
+    ,"Date":"2018-05-20"
     },
     {
       "Event":"Residence halls close for graduating seniors at 10am"
     ,"Day":"Monday"
-    ,"Date":"May.21"
+    ,"Date":"2018-05-21"
     },
     {
       "Event":"Non-senior grades due"
     ,"Day":"Monday"
-    ,"Date":"May.21"
+    ,"Date":"2018-05-21"
     },
     {
       "Event":"Student Progress Committee"
     ,"Day":"Thursday"
-    ,"Date":"May.24"
+    ,"Date":"2018-05-24"
     }]
 }

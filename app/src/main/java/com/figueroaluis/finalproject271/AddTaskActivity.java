@@ -33,6 +33,7 @@ public class AddTaskActivity extends AppCompatActivity {
     private TextView add_task_date_title;
     private EditText add_task_date_input;
     private String importanceSelect;
+    private String primaryListNameSelect;
     private ImageButton audioRecordButton;
     private String audioFilePath;
     private EditText add_task_tags_input;
@@ -47,9 +48,11 @@ public class AddTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task_activity);
+        ArrayList<String> mainListNames;
         final ArrayList<String> importanceList = new ArrayList<String>();
         audioRecordButton = findViewById(R.id.add_task_audio_button);
         Spinner importanceDropdown = findViewById(R.id.add_task_importance_dropdown);
+        Spinner listNameSelectDropdown = findViewById(R.id.add_task_primary_tag_dropdown);
         add_task_title_input = findViewById(R.id.add_task_title_input);
         add_task_date_input = findViewById(R.id.add_task_date_input);
         add_task_tags_input = findViewById(R.id.add_task_tags_input);
@@ -61,6 +64,7 @@ public class AddTaskActivity extends AppCompatActivity {
         importanceList.add("Low Priority");
         importanceList.add("Important");
         importanceList.add("Very Important");
+
         ArrayAdapter<String> importanceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, importanceList);
         importanceDropdown.setAdapter(importanceAdapter);
         importanceDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
@@ -72,6 +76,21 @@ public class AddTaskActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {importanceSelect = "Normal";}
         });
+
+        ArrayList<String> mainLists = this.getIntent().getExtras().getStringArrayList("MainListNamesPrimaryTag");
+        ArrayAdapter<String> primaryTagAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, mainLists);
+        listNameSelectDropdown.setAdapter(primaryTagAdapter);
+        listNameSelectDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                primaryListNameSelect = (String) adapterView.getItemAtPosition(i);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView){
+                primaryListNameSelect = "Inbox";
+            }
+        });
+
         audioRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

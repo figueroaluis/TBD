@@ -13,10 +13,12 @@ public class TaskListsDefault{
 
     // instance fields
     ArrayList<TaskList> defaultLists;
+    ArrayList<String> defaultListsNames;
     private StoreRetrieveMainListsData storeRetrieveData;
 
     public TaskListsDefault() {
         defaultLists = new ArrayList<>();
+        defaultListsNames = new ArrayList<>();
         final TaskList INBOX_LIST = new TaskList("Inbox", new ArrayList<Task>());
         final TaskList TODAY = new TaskList("Today", new ArrayList<Task>());
         final TaskList THIS_WEEK = new TaskList("This Week", new ArrayList<Task>());
@@ -29,8 +31,13 @@ public class TaskListsDefault{
         defaultLists.add(THIS_WEEK);
 
         // testing and placeholder
-        defaultLists.add(ADD_NEW_LIST);
+        // defaultLists.add(ADD_NEW_LIST);
         // defaultLists.add(defaultLists.size()-1, THIS_WEEK2);
+
+        for(int i = 0; i < defaultLists.size(); i++){
+            defaultListsNames.add(defaultLists.get(i).getTaskListName());
+        }
+
     }
 
 
