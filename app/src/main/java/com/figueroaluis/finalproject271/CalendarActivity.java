@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -25,6 +24,7 @@ public class CalendarActivity extends AppCompatActivity {
     private ListView calendarListView;
     private TaskDAO taskDAO;
     private TaskItemAdapter adapter;
+    public boolean isInFront;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -50,7 +50,7 @@ public class CalendarActivity extends AppCompatActivity {
                 Intent detailIntent = new Intent(mContext, TaskDetailActivity.class);
 
                 detailIntent.putExtra("taskID", selectedTask.getTaskID());
-
+                detailIntent.putExtra("isInFrontCal", isInFront);
 
                 startActivity(detailIntent);
             }
@@ -102,6 +102,14 @@ public class CalendarActivity extends AppCompatActivity {
         taskList.addAll(taskDAO.getTasks());
         adapter.notifyDataSetChanged();
 
+        isInFront = true;
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+
+        isInFront = false;
     }
 
 

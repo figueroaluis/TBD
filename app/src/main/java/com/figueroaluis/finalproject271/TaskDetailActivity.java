@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -26,6 +25,9 @@ public class TaskDetailActivity extends AppCompatActivity{
     private MediaPlayer mPlayer;
     private Task selectedTask;
     private TaskDAO taskDAO;
+    public boolean isInFrontCal;
+    public boolean inInFrontList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -33,6 +35,7 @@ public class TaskDetailActivity extends AppCompatActivity{
         AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
         taskDAO = database.getTaskDAO();
         selectedTask = taskDAO.getTaskbyID(this.getIntent().getExtras().getLong("taskID"));
+        isInFrontCal = this.getIntent().getBooleanExtra("isInFrontCal", isInFrontCal);
         playAudioButton = findViewById(R.id.task_detail_play_audio_button);
         audioFilePath = selectedTask.getAudioFileName();
         final EditText titleEditView = findViewById(R.id.task_detail_title);
@@ -58,6 +61,7 @@ public class TaskDetailActivity extends AppCompatActivity{
                 taskDAO.update(selectedTask);
 
                 Toast.makeText(getApplicationContext(), "Task Updated", Toast.LENGTH_LONG).show();
+                finish();
             }
         });
         playAudioButton.setOnClickListener(new View.OnClickListener(){
@@ -105,6 +109,18 @@ public class TaskDetailActivity extends AppCompatActivity{
     }
 
 
+    public void returnToPrevious(View view){
+        Intent addOrUpdateTask;
+        if(isInFrontCal){
+            addOrUpdateTask = new Intent(getApplicationContext(), CalendarActivity.class);
+            this.startActivity(addOrUpdateTask);
+        } else{
+            addOrUpdateTask = new Intent(getApplicationContext(), TaskItemList.class);
+            this.startActivity(addOrUpdateTask);
+        }
+
+    }
+
     public void returnToList(View view){
         Intent addTask = new Intent(getApplicationContext(), TaskItemList.class);
         this.startActivity(addTask);
@@ -114,6 +130,8 @@ public class TaskDetailActivity extends AppCompatActivity{
         Intent deleteTask = new Intent(getApplicationContext(), TaskItemList.class);
         taskDAO.delete(selectedTask);
         this.startActivity(deleteTask);
+
+        Toast.makeText(TaskDetailActivity.this, "Successfully Deleted Task", Toast.LENGTH_SHORT).show();
     }
 
 }

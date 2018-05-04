@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +29,7 @@ public class TaskItemList extends AppCompatActivity {
     private SearchView searchView;
     private ArrayList<Task> taskList;
     private TaskDAO taskDAO;
+    public boolean isInFront;
 
 
 
@@ -38,6 +40,14 @@ public class TaskItemList extends AppCompatActivity {
         mContext = this;
         mToolBar = findViewById(R.id.task_list_toolbar);
         setSupportActionBar(mToolBar);
+
+        mToolBar.setNavigationOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent backButton = new Intent(getApplicationContext(), MainActivity.class);
+                mContext.startActivity(backButton);
+            }
+        });
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -84,6 +94,7 @@ public class TaskItemList extends AppCompatActivity {
                 Intent detailIntent = new Intent(mContext, TaskDetailActivity.class);
 
                 detailIntent.putExtra("taskID", selectedTask.getTaskID());
+                detailIntent.putExtra("isInFrontList", isInFront);
 
                 startActivity(detailIntent);
             }
@@ -118,18 +129,34 @@ public class TaskItemList extends AppCompatActivity {
         taskList.addAll(taskDAO.getTasks());
         adapter.notifyDataSetChanged();
 
+        isInFront = true;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        isInFront = false;
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_sort_listview, menu);
         return true;
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-
-        return true;
+        switch (item.getItemId()){
+            case android.R.id.home:
+                if(NavUtils.getParentActivityName(this ) != null){
+                    NavUtils.navigateUpFromSameTask(this);
+                }
+                return true;
+                default:
+                    return super.onOptionsItemSelected(item);
+        }
     }
 
 
