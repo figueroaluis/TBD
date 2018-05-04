@@ -5,6 +5,12 @@
     tools:context=".MainActivity">
 
     <item
+        android:id="@+id/add_list_button"
+        android:title="Add New List..."
+        app:showAsAction="never"
+        />
+
+    <item
         android:id="@+id/calendar_menu_button"
         android:title="Calendar"
         app:showAsAction="never"
@@ -20,5 +26,4 @@
         android:title="Settings"
         app:showAsAction="never"
         />
-
 </menu>

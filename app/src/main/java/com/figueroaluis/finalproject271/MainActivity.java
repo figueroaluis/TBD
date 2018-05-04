@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton add_to_do_button;
     private ListView mListView;
     private ArrayList<TaskList> MainItemLists;
+    private ArrayList<String> MainItemListNames;
     private StoreRetrieveMainListsData storeRetrieveData;
     public static final String FILENAME = "mainLists.json";
 /*
@@ -89,13 +90,20 @@ public class MainActivity extends AppCompatActivity {
         //storeRetrieveData = new StoreRetrieveMainListsData(this, FILENAME);
         //MainItemLists = getLocallyStoredData(storeRetrieveData);
 
+
+
         // ---------- Main Lists -----------
         // data to display
+
         AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
         ListDAO listDAO = database.getListDAO();
 
         MainItemLists = new ArrayList<>();
         MainItemLists.addAll(listDAO.getLists());
+
+        // MainItemLists = new TaskListsDefault().defaultLists;
+        MainItemListNames = new TaskListsDefault().defaultListsNames;
+
         TaskListAdapter adapter = new TaskListAdapter(mContext, MainItemLists);
         mListView = findViewById(R.id.main_lists_list_view);
         mListView.setAdapter(adapter);
@@ -104,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 TaskList selectedTaskList = MainItemLists.get(position);
+
+
                 Intent detailIntent = new Intent(mContext, TaskItemList.class);
                 startActivity(detailIntent);
             }
@@ -116,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddTaskActivity.class);
+                intent.putExtra("MainListNamesPrimaryTag", MainItemListNames);
                 startActivity(intent);
             }
         });
