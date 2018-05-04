@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -112,6 +113,8 @@ public class TaskDetailActivity extends AppCompatActivity{
 
     public void deleteTask(View view){
         Intent deleteTask = new Intent(getApplicationContext(), TaskItemList.class);
+        File deleteFile = new File(selectedTask.getAudioFileName());
+        deleteFile.delete();
         taskDAO.delete(selectedTask);
         this.startActivity(deleteTask);
     }

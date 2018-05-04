@@ -52,9 +52,8 @@ public class AudioRecordActivity extends AppCompatActivity {
         backButton = findViewById(R.id.audio_record_back_button);
         saveButton = findViewById(R.id.audio_record_save_button);
         checkPermission();
-
         mFilePath = getFilesDir().getAbsolutePath();
-        mFileName = "ChangeThisLater" + ".3gp";
+        mFileName = this.getIntent().getExtras().getString("TaskTitle") + ".3gp";
         mFilePath = mFilePath + "/" + mFileName;
         startRecording.setOnClickListener(new View.OnClickListener() {
             @Override
