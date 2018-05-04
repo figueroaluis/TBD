@@ -45,8 +45,10 @@ public class TaskDetailActivity extends AppCompatActivity{
         dateEditView.setText(selectedTask.getDate());
         final EditText tagsEditView = findViewById(R.id.task_detail_tags);
         tagsEditView.setText(selectedTask.getTags());
+        final String[] importance = {"Low Priority", "Normal", "Important", "Very Important"};
         final EditText importanceEditView = findViewById(R.id.task_detail_importance);
-        importanceEditView.setText(selectedTask.getImportance());
+
+        importanceEditView.setText(importance[selectedTask.getImportance()]);
         final EditText descriptionEditView = findViewById(R.id.task_detail_description);
         descriptionEditView.setText(selectedTask.getDescription());
         editButton = findViewById(R.id.task_detail_edit_button);
@@ -56,7 +58,21 @@ public class TaskDetailActivity extends AppCompatActivity{
                 selectedTask.setTitle(titleEditView.getText().toString());
                 selectedTask.setDate(dateEditView.getText().toString());
                 selectedTask.setTags(tagsEditView.getText().toString());
-                //selectedTask.setImportance(importanceEditView.getText());
+                String importance = importanceEditView.getText().toString();
+                if(importance.equals("Low Priority")) {
+                    selectedTask.setImportance(0);
+                }
+                else if(importance.equals("Normal")) {
+                    selectedTask.setImportance(1);
+                }
+                else if(importance.equals("Important")) {
+                    selectedTask.setImportance(2);
+                }
+                else if(importance.equals("Very Important")) {
+                    selectedTask.setImportance(3);
+                }
+
+
                 selectedTask.setDescription(descriptionEditView.getText().toString());
 
                 taskDAO.update(selectedTask);

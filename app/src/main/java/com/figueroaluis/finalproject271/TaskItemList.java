@@ -170,12 +170,13 @@ public class TaskItemList extends AppCompatActivity {
         }
     }
 
-    public void sortByImportance(View view){
+
+    public void sortByImportance(MenuItem item){
         Collections.sort(taskList, IMPORTANCE_ORDER);
         adapter.notifyDataSetChanged();
     }
 
-    public void sortByDate(View view){
+    public void sortByDate(MenuItem item){
         Collections.sort(taskList, DATE_ORDER);
         adapter.notifyDataSetChanged();
     }
