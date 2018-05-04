@@ -25,7 +25,7 @@ public class Task {
     private String date;
     private String time;
     private String tags;
-    private String importance;
+    private int importance;
     private String audioFileName;
     private String primaryTag;
 
@@ -90,11 +90,11 @@ public class Task {
         this.tags = tags;
     }
 
-    public String getImportance() {
+    public int getImportance() {
         return importance;
     }
 
-    public void setImportance(String importance) {
+    public void setImportance(int importance) {
         this.importance = importance;
     }
 
@@ -116,14 +116,15 @@ public class Task {
         // construct recipe Object for each recipe in JSON
         // add each object to arrayList and return List
         try{
-            String jsonString = loadJsonFromAsset("spring2018.json", context);
+            String jsonString = loadJsonFromAsset(filename, context);
             JSONObject json = new JSONObject(jsonString);
             JSONArray tasks = json.getJSONArray("schedule");
             // for loop to iterate through each recipe in recipes array
             for(int i = 0; i < tasks.length(); i++){
                 Task task = new Task();
                 task.title = tasks.getJSONObject(i).getString("Event");
-                //task.date = tasks.getJSONObject(i).getString("Date");
+                task.date = tasks.getJSONObject(i).getString("Date");
+                task.primaryTag = "Academic Calendar";
                 taskList.add(task);
             }
 

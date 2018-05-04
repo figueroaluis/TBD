@@ -32,7 +32,7 @@ public class AddTaskActivity extends AppCompatActivity {
     private EditText add_task_title_input;
     private TextView add_task_date_title;
     private EditText add_task_date_input;
-    private String importanceSelect;
+    private int importanceSelect;
     private ImageButton audioRecordButton;
     private String audioFilePath;
     private EditText add_task_tags_input;
@@ -57,8 +57,9 @@ public class AddTaskActivity extends AppCompatActivity {
         add_task_time_input = findViewById(R.id.add_task_time_input);
         audioFilePath = "";
         dateSelect="";
-        importanceList.add("Normal");
+
         importanceList.add("Low Priority");
+        importanceList.add("Normal");
         importanceList.add("Important");
         importanceList.add("Very Important");
         ArrayAdapter<String> importanceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, importanceList);
@@ -66,11 +67,11 @@ public class AddTaskActivity extends AppCompatActivity {
         importanceDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-                importanceSelect = (String) parent.getItemAtPosition(position);
+                importanceSelect = position;
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {importanceSelect = "Normal";}
+            public void onNothingSelected(AdapterView<?> parent) {importanceSelect = 1;}
         });
         audioRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override

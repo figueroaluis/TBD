@@ -17,6 +17,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class StoreRetrieveMainListsData {
+/*
     private Context mContext;
     private String filename;
 
@@ -79,5 +80,5 @@ public class StoreRetrieveMainListsData {
         }
         return lists;
     }
-
+*/
 }
