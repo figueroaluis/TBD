@@ -48,7 +48,6 @@ public class AddTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task_activity);
-        ArrayList<String> mainListNames;
         final ArrayList<String> importanceList = new ArrayList<String>();
         audioRecordButton = findViewById(R.id.add_task_audio_button);
         Spinner importanceDropdown = findViewById(R.id.add_task_importance_dropdown);
@@ -136,17 +135,14 @@ public class AddTaskActivity extends AppCompatActivity {
                 datePicker.show();
             }
         });
-
-
-
-
-
     }
+
 
     public void cancelTask(View view){
         Intent cancel = new Intent(getApplicationContext(), MainActivity.class);
         this.startActivity(cancel);
     }
+
 
     public void addTask(View view){
         Intent addTask = new Intent(getApplicationContext(), MainActivity.class);
@@ -166,6 +162,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
         Toast.makeText(AddTaskActivity.this, "Successfully Added Task", Toast.LENGTH_SHORT).show();
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
