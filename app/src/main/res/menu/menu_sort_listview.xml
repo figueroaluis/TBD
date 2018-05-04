@@ -8,12 +8,14 @@
         android:id="@+id/sort_tasklist_importance_menu_button"
         android:title="Sort By Importance"
         app:showAsAction="never"
+        android:onClick="sortByImportance"
         />
 
     <item
         android:id="@+id/sort_tasklist_date_menu_button"
         android:title="Sort By Date"
         app:showAsAction="never"
+        android:onClick="sortByDate"
         />
 
 </menu>

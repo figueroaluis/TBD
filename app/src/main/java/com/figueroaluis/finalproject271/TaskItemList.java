@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Mshoga on 4/17/2018.
@@ -30,7 +32,16 @@ public class TaskItemList extends AppCompatActivity {
     private ArrayList<Task> taskList;
     private TaskDAO taskDAO;
     public boolean isInFront;
-
+    static final Comparator<Task> IMPORTANCE_ORDER = new Comparator<Task>(){
+        public int compare(Task t1, Task t2){
+            return t1.getImportance()-t2.getImportance();
+        }
+    };
+    static final Comparator<Task> DATE_ORDER = new Comparator<Task>(){
+        public int compare(Task t1, Task t2){
+            return t1.getDate().compareTo(t2.getDate());
+        }
+    };
 
 
     @Override
@@ -157,6 +168,16 @@ public class TaskItemList extends AppCompatActivity {
                 default:
                     return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void sortByImportance(View view){
+        Collections.sort(taskList, IMPORTANCE_ORDER);
+        adapter.notifyDataSetChanged();
+    }
+
+    public void sortByDate(View view){
+        Collections.sort(taskList, DATE_ORDER);
+        adapter.notifyDataSetChanged();
     }
 
 

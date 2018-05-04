@@ -1,9 +1,12 @@
 package com.figueroaluis.finalproject271;
 
 import android.app.Activity;
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> MainItemListNames;
     private StoreRetrieveMainListsData storeRetrieveData;
     public static final String FILENAME = "mainLists.json";
-
+/*
     public static ArrayList<TaskList> getLocallyStoredData(StoreRetrieveMainListsData storeRetrieveData){
         ArrayList<TaskList> lists = null;
         try {
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return lists;
     }
-
+*/
 
     // ---------------------- OnCreate() ----------------------- //
     @Override
@@ -62,7 +65,27 @@ public class MainActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(!prefs.getBoolean("firstRun",false)){
+            AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
+            TaskDAO taskDAO = database.getTaskDAO();
+            ArrayList<Task> academicTasks = Task.getTasksFromFile("spring2018.json", this);
+            for(Task t : academicTasks){
+                taskDAO.insert(t);
+            }
 
+            ListDAO listDAO = database.getListDAO();
+            ArrayList<TaskList> listsToDB = new TaskListsDefault().defaultLists;
+            for(TaskList tl : listsToDB){
+                listDAO.insert(tl);
+            }
+
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("firstRun", true);
+            editor.commit();
+
+        }
         // MainLists from json file
         //storeRetrieveData = new StoreRetrieveMainListsData(this, FILENAME);
         //MainItemLists = getLocallyStoredData(storeRetrieveData);
@@ -71,8 +94,16 @@ public class MainActivity extends AppCompatActivity {
 
         // ---------- Main Lists -----------
         // data to display
-        MainItemLists = new TaskListsDefault().defaultLists;
+
+        AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
+        ListDAO listDAO = database.getListDAO();
+
+        MainItemLists = new ArrayList<>();
+        MainItemLists.addAll(listDAO.getLists());
+
+        // MainItemLists = new TaskListsDefault().defaultLists;
         MainItemListNames = new TaskListsDefault().defaultListsNames;
+
         TaskListAdapter adapter = new TaskListAdapter(mContext, MainItemLists);
         mListView = findViewById(R.id.main_lists_list_view);
         mListView.setAdapter(adapter);

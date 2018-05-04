@@ -56,7 +56,7 @@ public class TaskDetailActivity extends AppCompatActivity{
                 selectedTask.setTitle(titleEditView.getText().toString());
                 selectedTask.setDate(dateEditView.getText().toString());
                 selectedTask.setTags(tagsEditView.getText().toString());
-                selectedTask.setImportance(importanceEditView.getText().toString());
+                //selectedTask.setImportance(importanceEditView.getText());
                 selectedTask.setDescription(descriptionEditView.getText().toString());
 
                 taskDAO.update(selectedTask);

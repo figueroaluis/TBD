@@ -18,20 +18,23 @@ public class TaskListsDefault{
 
     public TaskListsDefault() {
         defaultLists = new ArrayList<>();
-        defaultListsNames = new ArrayList<>();
-        final TaskList INBOX_LIST = new TaskList("Inbox", new ArrayList<Task>());
-        final TaskList TODAY = new TaskList("Today", new ArrayList<Task>());
-        final TaskList THIS_WEEK = new TaskList("This Week", new ArrayList<Task>());
 
+        final TaskList INBOX_LIST = new TaskList("Inbox");
+        final TaskList TODAY = new TaskList("Today");
+        final TaskList THIS_WEEK = new TaskList("This Week");
+        final TaskList ACADEMIC_CALENDAR = new TaskList("Academic Calendar");
+
+        defaultListsNames = new ArrayList<>();
+     
         // this is just a place holder
-        final TaskList ADD_NEW_LIST = new TaskList("Create List...", new ArrayList<Task>());
+        //final TaskList ADD_NEW_LIST = new TaskList("Create List...", new ArrayList<Task>());
 
         defaultLists.add(INBOX_LIST);
         defaultLists.add(TODAY);
         defaultLists.add(THIS_WEEK);
-
+        defaultLists.add(ACADEMIC_CALENDAR);
         // testing and placeholder
-        // defaultLists.add(ADD_NEW_LIST);
+
         // defaultLists.add(defaultLists.size()-1, THIS_WEEK2);
 
         for(int i = 0; i < defaultLists.size(); i++){
@@ -43,7 +46,7 @@ public class TaskListsDefault{
 
 
 
-
+/*
     private void saveData(){
         try{
             storeRetrieveData.saveToFile(defaultLists);
@@ -51,6 +54,6 @@ public class TaskListsDefault{
             e.printStackTrace();
         }
     }
-
+*/
 
 }
