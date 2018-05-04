@@ -76,6 +76,7 @@ public class AddTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent startAudio = new Intent(getApplicationContext(), AudioRecordActivity.class);
+                startAudio.putExtra("TaskTitle", add_task_title_input.getText().toString());
                 startActivityForResult(startAudio, 1);
             }
         });
