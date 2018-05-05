@@ -113,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 TaskList selectedTaskList = MainItemLists.get(position);
 
-
                 Intent detailIntent = new Intent(mContext, TaskItemList.class);
+                detailIntent.putExtra("PrimaryTag", selectedTaskList.getTaskListName());
                 startActivity(detailIntent);
             }
         });

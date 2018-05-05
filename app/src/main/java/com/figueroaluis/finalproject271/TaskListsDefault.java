@@ -19,7 +19,7 @@ public class TaskListsDefault{
     public TaskListsDefault() {
         defaultLists = new ArrayList<>();
 
-        final TaskList INBOX_LIST = new TaskList("Inbox");
+        final TaskList INBOX_LIST = new TaskList("All Tasks");
         final TaskList TODAY = new TaskList("Today");
         final TaskList THIS_WEEK = new TaskList("This Week");
         final TaskList ACADEMIC_CALENDAR = new TaskList("Academic Calendar");
