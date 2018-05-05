@@ -1,20 +1,18 @@
 package com.figueroaluis.finalproject271;
 
-import org.json.JSONException;
+import android.support.v7.app.AppCompatActivity;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * Created by luisfigueroa on 4/19/18.
  */
 
-public class TaskListsDefault{
+public class TaskListsDefault extends AppCompatActivity{
 
     // instance fields
     ArrayList<TaskList> defaultLists;
     ArrayList<String> defaultListsNames;
-    private StoreRetrieveMainListsData storeRetrieveData;
 
     public TaskListsDefault() {
         defaultLists = new ArrayList<>();
@@ -43,17 +41,5 @@ public class TaskListsDefault{
 
     }
 
-
-
-
-/*
-    private void saveData(){
-        try{
-            storeRetrieveData.saveToFile(defaultLists);
-        } catch (JSONException | IOException e){
-            e.printStackTrace();
-        }
-    }
-*/
 
 }

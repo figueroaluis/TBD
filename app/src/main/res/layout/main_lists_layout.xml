@@ -21,6 +21,7 @@
         android:layout_margin="16dp"
         android:src="@android:drawable/ic_input_add"
         app:backgroundTint="@color/colorPrimary"
+        android:layout_weight="1"
         tools:layout_editor_absoluteX="313dp"
         tools:layout_editor_absoluteY="441dp" />
 

@@ -4,7 +4,6 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,6 +34,7 @@ public class TaskItemList extends AppCompatActivity {
     private ArrayList<Task> taskList;
     private TaskDAO taskDAO;
     public boolean isInFront;
+    private TaskList selectedList;
     static final Comparator<Task> IMPORTANCE_ORDER = new Comparator<Task>(){
         public int compare(Task t1, Task t2){
             return t2.getImportance()-t1.getImportance();
@@ -149,17 +150,24 @@ public class TaskItemList extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
-            case android.R.id.home:
-                if(NavUtils.getParentActivityName(this ) != null){
-                    NavUtils.navigateUpFromSameTask(this);
-                }
-                return true;
-                default:
-                    return super.onOptionsItemSelected(item);
-        }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item){
+//        switch (item.getItemId()){
+//            case android.R.id.home:
+//                if(NavUtils.getParentActivityName(this ) != null){
+//                    NavUtils.navigateUpFromSameTask(this);
+//                }
+//                return true;
+//                default:
+//                    return super.onOptionsItemSelected(item);
+//        }
+//    }
+
+    public void deleteList(MenuItem item){
+        Intent deleteList;
+        deleteList = new Intent(getApplicationContext(), MainActivity.class);
+
+        Toast.makeText(TaskItemList.this, "Successfully Deleted List", Toast.LENGTH_SHORT).show();
     }
 
 
