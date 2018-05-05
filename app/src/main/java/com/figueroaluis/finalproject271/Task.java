@@ -125,6 +125,8 @@ public class Task {
                 task.title = tasks.getJSONObject(i).getString("Event");
                 task.date = tasks.getJSONObject(i).getString("Date");
                 task.primaryTag = "Academic Calendar";
+                task.audioFileName = "";
+                task.importance = 1;
                 taskList.add(task);
             }
 

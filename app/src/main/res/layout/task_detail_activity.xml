@@ -28,13 +28,28 @@
 
     <EditText
         android:id="@+id/task_detail_date"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/task_detail_title"
         android:layout_toEndOf="@+id/task_detail_return_button"
-        android:text="Date/Time: 00:00 a.m. 00/00/0000"
+        android:text="00/00/0000"
         android:layout_marginTop="10dp"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:gravity="center_horizontal"
+
+        />
+
+    <EditText
+        android:id="@+id/task_detail_time"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/task_detail_title"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/task_detail_date"
+        android:text="Time: 00:00"
+        android:textSize="15sp"
+        android:gravity="center_horizontal"
+        />
 
     <EditText
         android:id="@+id/task_detail_tags"

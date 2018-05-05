@@ -1,6 +1,7 @@
 package com.figueroaluis.finalproject271;
 
 import android.content.Context;
+import android.graphics.ColorSpace;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,7 @@ public class TaskItemAdapter extends BaseAdapter implements Filterable {
             holder.taskTitleTextView = convertView.findViewById(R.id.list_task_title);
             holder.taskDateTextView = convertView.findViewById(R.id.list_task_date);
             holder.taskTimeTextView = convertView.findViewById(R.id.list_task_time);
-
+            holder.taskTagTextView = convertView.findViewById(R.id.list_task_tags);
             convertView.setTag(holder);
 
         }
@@ -65,6 +66,7 @@ public class TaskItemAdapter extends BaseAdapter implements Filterable {
         TextView taskTitleTextView = holder.taskTitleTextView;
         TextView taskDateTextView = holder.taskDateTextView;
         TextView taskTimeTextView = holder.taskTimeTextView;
+        TextView taskTagTextView = holder.taskTagTextView;
 
         final Task task = (Task) getItem(position);
 
@@ -76,6 +78,9 @@ public class TaskItemAdapter extends BaseAdapter implements Filterable {
 
         taskTimeTextView.setText(task.getTime());
         taskTimeTextView.setTextSize(14);
+
+        taskTagTextView.setText(task.getTags());
+        taskTagTextView.setTextSize(14);
 
         return convertView;
 
@@ -93,7 +98,8 @@ public class TaskItemAdapter extends BaseAdapter implements Filterable {
                 } else{
                     ArrayList<Task> filterResultData = new ArrayList<>();
                     for(Task task: originalTasks){
-                        if(task.getTitle().toLowerCase().contains(charSequence.toString().toLowerCase())){
+                        if(task.getTitle().toLowerCase().contains(charSequence.toString().toLowerCase())
+                                || (task.getTags()!=null && task.getTags().toLowerCase().contains(charSequence.toString().toLowerCase()))){
                             filterResultData.add(task);
                         }
                     }
@@ -113,10 +119,12 @@ public class TaskItemAdapter extends BaseAdapter implements Filterable {
 
 
 
+
     private static class ViewHolder{
         public TextView taskTitleTextView;
         public TextView taskDateTextView;
         public TextView taskTimeTextView;
+        public TextView taskTagTextView;
 
     }
 }

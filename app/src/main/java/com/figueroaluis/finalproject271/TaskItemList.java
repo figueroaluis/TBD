@@ -91,7 +91,8 @@ public class TaskItemList extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Task selectedTask = taskList.get(position);
+                Task selectedTask = (Task) parent.getAdapter().getItem(position);
+                //Task selectedTask = taskList.get(position);
                 Intent detailIntent = new Intent(mContext, TaskDetailActivity.class);
 
                 detailIntent.putExtra("taskID", selectedTask.getTaskID());
@@ -111,6 +112,7 @@ public class TaskItemList extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
+                //adapter.notifyDataSetChanged();
                 return false;
             }
         });

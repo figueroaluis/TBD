@@ -47,6 +47,8 @@ public class TaskDetailActivity extends AppCompatActivity{
         tagsEditView.setText(selectedTask.getTags());
         final String[] importance = {"Low Priority", "Normal", "Important", "Very Important"};
         final EditText importanceEditView = findViewById(R.id.task_detail_importance);
+        final EditText timeEditView = findViewById(R.id.task_detail_time);
+        timeEditView.setText(selectedTask.getTime());
 
         importanceEditView.setText(importance[selectedTask.getImportance()]);
         final EditText descriptionEditView = findViewById(R.id.task_detail_description);
@@ -58,6 +60,7 @@ public class TaskDetailActivity extends AppCompatActivity{
                 selectedTask.setTitle(titleEditView.getText().toString());
                 selectedTask.setDate(dateEditView.getText().toString());
                 selectedTask.setTags(tagsEditView.getText().toString());
+                selectedTask.setTime(timeEditView.getText().toString());
                 String importance = importanceEditView.getText().toString();
                 if(importance.equals("Low Priority")) {
                     selectedTask.setImportance(0);
@@ -101,6 +104,7 @@ public class TaskDetailActivity extends AppCompatActivity{
                     } catch (IOException e) {
                         Toast.makeText(TaskDetailActivity.this, "No File to Play", Toast.LENGTH_SHORT).show();
                     }
+
                 }
                 else{
                     mPlayer.stop();
