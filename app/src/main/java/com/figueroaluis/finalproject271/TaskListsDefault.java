@@ -1,48 +1,44 @@
 package com.figueroaluis.finalproject271;
 
-import org.json.JSONException;
+import android.support.v7.app.AppCompatActivity;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * Created by luisfigueroa on 4/19/18.
  */
 
-public class TaskListsDefault{
+public class TaskListsDefault extends AppCompatActivity{
 
     // instance fields
     ArrayList<TaskList> defaultLists;
-    private StoreRetrieveMainListsData storeRetrieveData;
+    ArrayList<String> defaultListsNames;
 
     public TaskListsDefault() {
         defaultLists = new ArrayList<>();
-        final TaskList INBOX_LIST = new TaskList("Inbox", new ArrayList<Task>());
-        final TaskList TODAY = new TaskList("Today", new ArrayList<Task>());
-        final TaskList THIS_WEEK = new TaskList("This Week", new ArrayList<Task>());
 
+        final TaskList INBOX_LIST = new TaskList("All Tasks");
+        final TaskList TODAY = new TaskList("Today");
+        final TaskList THIS_WEEK = new TaskList("This Week");
+        final TaskList ACADEMIC_CALENDAR = new TaskList("Academic Calendar");
+
+        defaultListsNames = new ArrayList<>();
+     
         // this is just a place holder
-        final TaskList ADD_NEW_LIST = new TaskList("Create List...", new ArrayList<Task>());
+        //final TaskList ADD_NEW_LIST = new TaskList("Create List...", new ArrayList<Task>());
 
         defaultLists.add(INBOX_LIST);
         defaultLists.add(TODAY);
         defaultLists.add(THIS_WEEK);
-
+        defaultLists.add(ACADEMIC_CALENDAR);
         // testing and placeholder
-        defaultLists.add(ADD_NEW_LIST);
+
         // defaultLists.add(defaultLists.size()-1, THIS_WEEK2);
-    }
 
-
-
-
-
-    private void saveData(){
-        try{
-            storeRetrieveData.saveToFile(defaultLists);
-        } catch (JSONException | IOException e){
-            e.printStackTrace();
+        for(int i = 0; i < defaultLists.size(); i++){
+            defaultListsNames.add(defaultLists.get(i).getTaskListName());
         }
+
     }
 
 

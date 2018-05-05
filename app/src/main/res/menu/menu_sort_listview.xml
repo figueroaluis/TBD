@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".TaskItemList">
+
+    <item
+        android:id="@+id/sort_tasklist_importance_menu_button"
+        android:title="Sort By Importance"
+        app:showAsAction="never"
+        android:onClick="sortByImportance"
+        />
+
+    <item
+        android:id="@+id/sort_tasklist_date_menu_button"
+        android:title="Sort By Date"
+        app:showAsAction="never"
+        android:onClick="sortByDate"
+        />
+    <item
+        android:id="@+id/delete_list"
+        android:title="Delete This List"
+        app:showAsAction="never"
+        android:actionMenuTextColor="#ED2939"/>
+        <!--android:onClick="deleteList"-->
+
+</menu>

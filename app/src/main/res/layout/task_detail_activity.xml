@@ -1,107 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/task_detail_return_button"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        app:srcCompat="?android:attr/actionModeCloseDrawable"
-        android:onClick="returnToList"
-        />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/task_detail_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/task_detail_return_button"
-        android:layout_toEndOf="@+id/task_detail_return_button"
-        android:text="Task Title: Title"
-        android:layout_marginTop="5dp"
-        android:textSize="20sp"
-        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/task_detail_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/task_detail_title"
-        android:layout_toEndOf="@+id/task_detail_return_button"
-        android:text="Date/Time: 00:00 a.m. 00/00/0000"
-        android:layout_marginTop="10dp"
-        android:textSize="15sp" />
+            <ImageButton
+                android:id="@+id/task_detail_return_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:onClick="returnToPrevious"
+                app:srcCompat="?android:attr/actionModeCloseDrawable" />
 
-    <EditText
-        android:id="@+id/task_detail_tags"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/task_detail_date"
-        android:layout_toEndOf="@+id/task_detail_return_button"
-        android:text="Tags: Tag 1, Tag 2, Tag 3"
-        android:layout_marginTop="10dp"
-        android:textSize="15sp" />
+            <EditText
+                android:id="@+id/task_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/task_detail_return_button"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/task_detail_return_button"
+                android:text="Task Title: Title"
+                android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/task_detail_importance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/task_detail_tags"
-        android:layout_toEndOf="@+id/task_detail_return_button"
-        android:text="Importance: V. Important"
-        android:layout_marginTop="10dp"
-        android:textSize="15sp" />
+            <EditText
+                android:id="@+id/task_detail_date"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/task_detail_title"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/task_detail_return_button"
+                android:gravity="center_horizontal"
+                android:text="00/00/0000"
+                android:textSize="15sp"
 
-    <EditText
-        android:id="@+id/task_detail_description"
-        android:layout_width="275dp"
-        android:layout_height="150dp"
-        android:layout_below="@+id/task_detail_importance"
-        android:layout_toEndOf="@+id/task_detail_return_button"
-        android:text="Description: Descriptive description"
-        android:layout_marginTop="10dp"
-        android:textSize="15sp" />
+                />
 
-    <TextView
-        android:id="@+id/task_detail_play_audio_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/task_detail_description"
-        android:layout_toEndOf="@+id/task_detail_return_button"
-        android:text="Play Audio Note"
-        android:layout_marginTop="10dp"
-        android:textSize="15sp" />
+            <EditText
+                android:id="@+id/task_detail_time"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/task_detail_title"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/task_detail_date"
+                android:gravity="center_horizontal"
+                android:text="Time: 00:00"
+                android:textSize="15sp" />
 
-    <ImageButton
-        android:id="@+id/task_detail_play_audio_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/task_detail_play_audio_description"
-        android:layout_below="@+id/task_detail_play_audio_description"
-        android:layout_marginTop="14dp"
-        app:srcCompat="@android:drawable/ic_btn_speak_now" />
+            <EditText
+                android:id="@+id/task_detail_tags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/task_detail_date"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/task_detail_return_button"
+                android:text="Tags: Tag 1, Tag 2, Tag 3"
+                android:textSize="15sp" />
 
-    <Button
-        android:id="@+id/task_detail_edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Update Task" />
+            <EditText
+                android:id="@+id/task_detail_importance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/task_detail_tags"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/task_detail_return_button"
+                android:text="Importance: V. Important"
+                android:textSize="15sp" />
 
-    <Button
-        android:id="@+id/task_detail_delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:text="Delete"
-        android:onClick="deleteTask"
-        />
+            <EditText
+                android:id="@+id/task_detail_description"
+                android:layout_width="275dp"
+                android:layout_height="150dp"
+                android:layout_below="@+id/task_detail_importance"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/task_detail_return_button"
+                android:text="Description: Descriptive description"
+                android:background="@drawable/textboxborder"
+                android:gravity="top"
+                android:textSize="15sp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                />
+
+            <TextView
+                android:id="@+id/task_detail_play_audio_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/task_detail_description"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/task_detail_return_button"
+                android:text="Play Audio Note"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/task_detail_play_audio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/task_detail_play_audio_description"
+                android:layout_below="@+id/task_detail_play_audio_description"
+                android:layout_marginTop="14dp"
+                app:srcCompat="@android:drawable/ic_btn_speak_now" />
+
+            <Button
+                android:id="@+id/task_detail_edit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/task_detail_play_audio_button"
+                android:layout_centerHorizontal="true"
+                android:text="Update Task" />
+
+            <Button
+                android:id="@+id/task_detail_delete_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:onClick="deleteTask"
+                android:text="Delete" />
 
 
-</RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

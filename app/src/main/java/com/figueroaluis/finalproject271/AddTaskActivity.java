@@ -10,7 +10,6 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -20,7 +19,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -34,7 +32,11 @@ public class AddTaskActivity extends AppCompatActivity {
     private EditText add_task_title_input;
     private TextView add_task_date_title;
     private EditText add_task_date_input;
-    private String importanceSelect;
+
+    private int importanceSelect;
+    // private String importanceSelect;
+    private String primaryListNameSelect;
+
     private ImageButton audioRecordButton;
     private String audioFilePath;
     private EditText add_task_tags_input;
@@ -52,6 +54,7 @@ public class AddTaskActivity extends AppCompatActivity {
         final ArrayList<String> importanceList = new ArrayList<String>();
         audioRecordButton = findViewById(R.id.add_task_audio_button);
         Spinner importanceDropdown = findViewById(R.id.add_task_importance_dropdown);
+        Spinner listNameSelectDropdown = findViewById(R.id.add_task_primary_tag_dropdown);
         add_task_title_input = findViewById(R.id.add_task_title_input);
         add_task_date_input = findViewById(R.id.add_task_date_input);
         add_task_tags_input = findViewById(R.id.add_task_tags_input);
@@ -59,25 +62,43 @@ public class AddTaskActivity extends AppCompatActivity {
         add_task_time_input = findViewById(R.id.add_task_time_input);
         audioFilePath = "";
         dateSelect="";
-        importanceList.add("Normal");
+
         importanceList.add("Low Priority");
+        importanceList.add("Normal");
         importanceList.add("Important");
         importanceList.add("Very Important");
+
         ArrayAdapter<String> importanceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, importanceList);
         importanceDropdown.setAdapter(importanceAdapter);
         importanceDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-                importanceSelect = (String) parent.getItemAtPosition(position);
+                importanceSelect = position;
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {importanceSelect = "Normal";}
+            public void onNothingSelected(AdapterView<?> parent) {importanceSelect = 1;}
         });
+
+        ArrayList<String> mainLists = this.getIntent().getExtras().getStringArrayList("MainListNamesPrimaryTag");
+        ArrayAdapter<String> primaryTagAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, mainLists);
+        listNameSelectDropdown.setAdapter(primaryTagAdapter);
+        listNameSelectDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                primaryListNameSelect = (String) adapterView.getItemAtPosition(i);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView){
+                primaryListNameSelect = "All Tasks";
+            }
+        });
+
         audioRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent startAudio = new Intent(getApplicationContext(), AudioRecordActivity.class);
+                startAudio.putExtra("TaskTitle", add_task_title_input.getText().toString());
                 startActivityForResult(startAudio, 1);
             }
         });
@@ -118,17 +139,14 @@ public class AddTaskActivity extends AppCompatActivity {
                 datePicker.show();
             }
         });
-
-
-
-
-
     }
+
 
     public void cancelTask(View view){
         Intent cancel = new Intent(getApplicationContext(), MainActivity.class);
         this.startActivity(cancel);
     }
+
 
     public void addTask(View view){
         Intent addTask = new Intent(getApplicationContext(), MainActivity.class);
@@ -142,10 +160,14 @@ public class AddTaskActivity extends AppCompatActivity {
         task.setImportance(importanceSelect);
         task.setTags(add_task_tags_input.getText().toString());
         task.setTime(timeSelect);
+        task.setPrimaryTag(primaryListNameSelect);
 
         taskDAO.insert(task);
         this.startActivity(addTask);
+
+        Toast.makeText(AddTaskActivity.this, "Successfully Added Task", Toast.LENGTH_SHORT).show();
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){

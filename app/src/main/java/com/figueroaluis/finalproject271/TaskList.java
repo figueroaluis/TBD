@@ -1,5 +1,9 @@
 package com.figueroaluis.finalproject271;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -9,19 +13,23 @@ import java.util.ArrayList;
  * Created by luisfigueroa on 4/18/18.
  */
 
+@Entity(tableName = "lists")
 public class TaskList {
 
     // fields for this class
+    @PrimaryKey
+    @NonNull
     String taskListName;
-    ArrayList<Task> taskList;
-    private static final String TASKLISTNAME = "tasklistname";
+    //ArrayList<Task> taskList;
+    //private static final String TASKLISTNAME = "tasklistname";
 
 
     // use the default constructor
-    public TaskList(String taskListName, ArrayList<Task> taskList) {
+    public TaskList(String taskListName) {
         this.taskListName = taskListName;
-        this.taskList = taskList;
+        //this.taskList = taskList;
     }
+
 
     public String getTaskListName() {
         return taskListName;
@@ -31,6 +39,7 @@ public class TaskList {
         this.taskListName = taskListName;
     }
 
+    /*
     public ArrayList<Task> getTaskList() {
         return taskList;
     }
@@ -38,20 +47,9 @@ public class TaskList {
     public void setTaskList(ArrayList<Task> taskList) {
         this.taskList = taskList;
     }
+    */
 
 
-    // JSON Constructor
-    public TaskList(JSONObject jsonObject) throws JSONException{
-        taskListName = jsonObject.getString(TASKLISTNAME);
-    }
-
-
-    // JSON Stuff
-    public JSONObject toJSON() throws JSONException {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put(TASKLISTNAME, taskListName);
-        return jsonObject;
-    }
 
 
 
