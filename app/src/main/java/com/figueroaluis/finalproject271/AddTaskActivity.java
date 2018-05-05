@@ -90,7 +90,7 @@ public class AddTaskActivity extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView){
-                primaryListNameSelect = "Inbox";
+                primaryListNameSelect = "All Tasks";
             }
         });
 
@@ -160,6 +160,7 @@ public class AddTaskActivity extends AppCompatActivity {
         task.setImportance(importanceSelect);
         task.setTags(add_task_tags_input.getText().toString());
         task.setTime(timeSelect);
+        task.setPrimaryTag(primaryListNameSelect);
 
         taskDAO.insert(task);
         this.startActivity(addTask);

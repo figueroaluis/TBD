@@ -33,7 +33,9 @@ public class TaskItemList extends AppCompatActivity {
     private SearchView searchView;
     private ArrayList<Task> taskList;
     private TaskDAO taskDAO;
+    private ListDAO listDAO;
     public boolean isInFront;
+    private ArrayList<TaskList> queriedLists;
     private TaskList selectedList;
     static final Comparator<Task> IMPORTANCE_ORDER = new Comparator<Task>(){
         public int compare(Task t1, Task t2){
@@ -83,6 +85,13 @@ public class TaskItemList extends AppCompatActivity {
 
         AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
         taskDAO = database.getTaskDAO();
+        listDAO = database.getListDAO();
+
+        queriedLists = new ArrayList<>();
+        queriedLists.addAll(listDAO.getLists());
+
+        selectedList = new TaskList(getIntent().getExtras().getString("PrimaryTag"));
+
         taskList = new ArrayList<>();
         populateList();
         adapter = new TaskItemAdapter(mContext, taskList);
@@ -92,7 +101,8 @@ public class TaskItemList extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Task selectedTask = taskList.get(position);
+                Task selectedTask = (Task) parent.getAdapter().getItem(position);
+                //Task selectedTask = taskList.get(position);
                 Intent detailIntent = new Intent(mContext, TaskDetailActivity.class);
 
                 detailIntent.putExtra("taskID", selectedTask.getTaskID());
@@ -112,6 +122,7 @@ public class TaskItemList extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
+                //adapter.notifyDataSetChanged();
                 return false;
             }
         });
@@ -164,10 +175,18 @@ public class TaskItemList extends AppCompatActivity {
     public void deleteList(MenuItem item){
         Intent deleteList;
         deleteList = new Intent(getApplicationContext(), MainActivity.class);
-
-        Toast.makeText(TaskItemList.this, "Successfully Deleted List", Toast.LENGTH_SHORT).show();
+        if(selectedList.getTaskListName().equals("All Tasks") ||
+                selectedList.getTaskListName().equals("Today") ||
+                selectedList.getTaskListName().equals("This Week") ||
+                selectedList.getTaskListName().equals("Academic Calendar")){
+            startActivity(deleteList);
+            Toast.makeText(TaskItemList.this, "You Cannot Delete This List", Toast.LENGTH_SHORT).show();
+        } else{
+            listDAO.delete(selectedList);
+            startActivity(deleteList);
+            Toast.makeText(TaskItemList.this, "Successfully Deleted List", Toast.LENGTH_SHORT).show();
+        }
     }
-
 
     public void sortByImportance(MenuItem item){
         Collections.sort(taskList, IMPORTANCE_ORDER);
