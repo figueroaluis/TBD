@@ -23,6 +23,7 @@
         <activity android:name=".TaskDetailActivity"></activity>
         <activity android:name=".CalendarActivity"></activity>
         <activity android:name=".AudioRecordActivity"></activity>
+        <activity android:name=".AddListActivity"></activity>
     </application>
 
 </manifest>

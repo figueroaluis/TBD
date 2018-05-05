@@ -17,9 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView mListView;
     private ArrayList<TaskList> MainItemLists;
     private ArrayList<String> MainItemListNames;
+    private ArrayList<String> MainItemListNamesTest;
     private StoreRetrieveMainListsData storeRetrieveData;
     public static final String FILENAME = "mainLists.json";
 /*
@@ -102,7 +100,11 @@ public class MainActivity extends AppCompatActivity {
         MainItemLists.addAll(listDAO.getLists());
 
         // MainItemLists = new TaskListsDefault().defaultLists;
-        MainItemListNames = new TaskListsDefault().defaultListsNames;
+        // MainItemListNames = new TaskListsDefault().defaultListsNames;
+        MainItemListNamesTest = new ArrayList<>();
+        for(int i = 0; i < MainItemLists.size(); i++) {
+            MainItemListNamesTest.add(MainItemLists.get(i).getTaskListName());
+        }
 
         TaskListAdapter adapter = new TaskListAdapter(mContext, MainItemLists);
         mListView = findViewById(R.id.main_lists_list_view);
@@ -126,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddTaskActivity.class);
-                intent.putExtra("MainListNamesPrimaryTag", MainItemListNames);
+                intent.putExtra("MainListNamesPrimaryTag", MainItemListNamesTest);
                 startActivity(intent);
             }
         });
@@ -142,6 +144,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId()){
+            case R.id.add_list_button:
+                Intent addList_Intent = new Intent(this, AddListActivity.class);
+                startActivity(addList_Intent);
+                return true;
             case R.id.calendar_menu_button:
                 Intent cal_intent = new Intent(this, CalendarActivity.class);
                 startActivity(cal_intent);
