@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/calendar_menu_button"
-        android:title="Calendar"
+        android:title="View Calendar"
         app:showAsAction="never"
         />
 
@@ -21,9 +21,9 @@
         android:title="Email My Schedule"
         app:showAsAction="never"
         />
-    <item
-        android:id="@+id/settings_menu_button"
-        android:title="Settings"
-        app:showAsAction="never"
-        />
+    <!--<item-->
+        <!--android:id="@+id/settings_menu_button"-->
+        <!--android:title="Settings"-->
+        <!--app:showAsAction="never"-->
+        <!--/>-->
 </menu>
