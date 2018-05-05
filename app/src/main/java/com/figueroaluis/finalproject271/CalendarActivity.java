@@ -33,28 +33,11 @@ public class CalendarActivity extends AppCompatActivity {
         mContext = this;
         taskList = new ArrayList<Task>();
 
-        Task task1 = new Task();
-        task1.setTitle("Testing title");
-        task1.setDate("Testing date");
-        task1.setTime("Testing time");
-        taskList.add(task1);
-
         calendarView = findViewById(R.id.calendarView);
         calendarListView = findViewById(R.id.calendar_listview);
         adapter = new TaskItemAdapter(mContext, taskList);
         calendarListView.setAdapter(adapter);
-        calendarListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Task selectedTask = taskList.get(position);
-                Intent detailIntent = new Intent(mContext, TaskDetailActivity.class);
-
-                detailIntent.putExtra("taskID", selectedTask.getTaskID());
-                detailIntent.putExtra("isInFrontCal", isInFront);
-
-                startActivity(detailIntent);
-            }
-        });
+        startList();
         backButton = findViewById(R.id.calendar_back_button);
         AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
         taskDAO = database.getTaskDAO();
@@ -74,6 +57,18 @@ public class CalendarActivity extends AppCompatActivity {
                     taskList.addAll(taskDAO.getTaskBySingleDate(year+"-"+monthOutput+"-"+dayOutput));
                     //taskList.addAll(taskDAO.getTasks());
                     //Testing
+                    calendarListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Task selectedTask = taskList.get(position);
+                            Intent detailIntent = new Intent(mContext, TaskDetailActivity.class);
+
+                            detailIntent.putExtra("taskID", selectedTask.getTaskID());
+                            detailIntent.putExtra("isInFrontCal", isInFront);
+
+                            startActivity(detailIntent);
+                        }
+                    });
                     adapter.notifyDataSetChanged();
 
                 }
@@ -99,7 +94,7 @@ public class CalendarActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         taskList.clear();
-        taskList.addAll(taskDAO.getTasks());
+        startList();
         adapter.notifyDataSetChanged();
 
         isInFront = true;
@@ -113,5 +108,11 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
 
+    public void startList(){
+        Task task1 = new Task();
+        task1.setTitle("Select a day to see tasks");
+        taskList.add(task1);
+        calendarListView.setOnItemClickListener(null);
+    }
 
 }

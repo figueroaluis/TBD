@@ -15,8 +15,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Locale;
 
 /**
  * Created by Mshoga on 4/17/2018.
@@ -34,7 +36,7 @@ public class TaskItemList extends AppCompatActivity {
     public boolean isInFront;
     static final Comparator<Task> IMPORTANCE_ORDER = new Comparator<Task>(){
         public int compare(Task t1, Task t2){
-            return t1.getImportance()-t2.getImportance();
+            return t2.getImportance()-t1.getImportance();
         }
     };
     static final Comparator<Task> DATE_ORDER = new Comparator<Task>(){
@@ -77,23 +79,11 @@ public class TaskItemList extends AppCompatActivity {
 
         searchView = findViewById(R.id.search);
 
-        /*
-        ArrayList<String> tags = new ArrayList<String>();
-        tags.add("Tag 1, Tag two, Tag three");
-        Task task1 = new Task("Makeshift Title 1", "Makeshift Description 1", "99/99/9999", "99:99 a.m.", tags, "Important", "Audio.mp3");
-        Task task2 = new Task("Makeshift Title 2", "Makeshift Description 2", "99/99/9999", "99:99 p.m.", tags, "Important", "Audio.mp3");
-        Task task3 = new Task("Makeshift Title 3", "Makeshift Description 3", "99/99/9999", "99:99 a.m.", tags, "Important", "Audio.mp3");
-        Testing
-        final ArrayList<Task> taskList = new ArrayList<Task>();
-        taskList.add(task1);
-        taskList.add(task2);
-        taskList.add(task3);
-        */
 
         AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
         taskDAO = database.getTaskDAO();
         taskList = new ArrayList<>();
-        taskList.addAll(taskDAO.getTasks());
+        populateList();
         adapter = new TaskItemAdapter(mContext, taskList);
         mListView = findViewById(R.id.task_item_listview);
         mListView.setAdapter(adapter);
@@ -137,7 +127,7 @@ public class TaskItemList extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         taskList.clear();
-        taskList.addAll(taskDAO.getTasks());
+        populateList();
         adapter.notifyDataSetChanged();
 
         isInFront = true;
@@ -179,6 +169,44 @@ public class TaskItemList extends AppCompatActivity {
     public void sortByDate(MenuItem item){
         Collections.sort(taskList, DATE_ORDER);
         adapter.notifyDataSetChanged();
+    }
+
+    public void populateList(){
+        String primaryTag = "";
+        if(this.getIntent().getExtras().getString("PrimaryTag") != null) {
+            primaryTag = this.getIntent().getExtras().getString("PrimaryTag");
+        }
+
+        if(primaryTag.equals("All Tasks")){
+            taskList.addAll(taskDAO.getTasks());
+        }
+        else if(primaryTag.equals("Today")){
+            Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(calendar.YEAR);
+            int month = calendar.get(calendar.MONTH);
+            int day = calendar.get(calendar.DAY_OF_MONTH);
+            month++;
+            String dateSelect=String.format(Locale.getDefault(),"%02d-%02d-%02d", year, month, day);
+            taskList.addAll(taskDAO.getTaskBySingleDate(dateSelect));
+        }
+        else if(primaryTag.equals("This Week")){
+            Calendar calendar = Calendar.getInstance();
+            int startYear = calendar.get(calendar.YEAR);
+            int startMonth = calendar.get(calendar.MONTH);
+            int startDay = calendar.get(calendar.DAY_OF_MONTH);
+            startMonth++;
+            calendar.add(Calendar.DAY_OF_MONTH, 7);
+            int endYear = calendar.get(calendar.YEAR);
+            int endMonth = calendar.get(calendar.MONTH);
+            int endDay = calendar.get(calendar.DAY_OF_MONTH);
+            endMonth++;
+            String dateStart=String.format(Locale.getDefault(),"%02d-%02d-%02d", startYear, startMonth, startDay);
+            String dateEnd=String.format(Locale.getDefault(),"%02d-%02d-%02d", endYear, endMonth, endDay);
+            taskList.addAll(taskDAO.getTaskByDateRange(dateStart,dateEnd));
+        }
+        else{
+            taskList.addAll(taskDAO.getTaskWithPrimaryTag(primaryTag));
+        }
     }
 
 

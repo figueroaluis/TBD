@@ -133,6 +133,7 @@ public class TaskDetailActivity extends AppCompatActivity{
             this.startActivity(addOrUpdateTask);
         } else{
             addOrUpdateTask = new Intent(getApplicationContext(), TaskItemList.class);
+            addOrUpdateTask.putExtra("PrimaryTag", selectedTask.getPrimaryTag());
             this.startActivity(addOrUpdateTask);
         }
 
@@ -144,9 +145,18 @@ public class TaskDetailActivity extends AppCompatActivity{
     }
 
     public void deleteTask(View view){
-        Intent deleteTask = new Intent(getApplicationContext(), TaskItemList.class);
-        File deleteFile = new File(selectedTask.getAudioFileName());
-        deleteFile.delete();
+        Intent deleteTask;
+        if(!isInFrontCal){
+            deleteTask = new Intent(getApplicationContext(), TaskItemList.class);
+        }
+        else{
+            deleteTask = new Intent(getApplicationContext(), CalendarActivity.class);
+        }
+        if(selectedTask.getAudioFileName() != null) {
+            File deleteFile = new File(selectedTask.getAudioFileName());
+            deleteFile.delete();
+        }
+        deleteTask.putExtra("PrimaryTag", selectedTask.getPrimaryTag());
         taskDAO.delete(selectedTask);
         this.startActivity(deleteTask);
 
