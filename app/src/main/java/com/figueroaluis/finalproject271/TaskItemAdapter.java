@@ -1,14 +1,17 @@
 package com.figueroaluis.finalproject271;
 
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,9 +24,12 @@ public class TaskItemAdapter extends BaseAdapter implements Filterable {
     private Context mContext;
     private ArrayList<Task> mtaskList;
     private LayoutInflater mInflater;
+    private TaskDAO taskDAO;
 
     private ArrayList<Task> originalTasks;
     private ArrayList<Task> filteredTasks;
+
+
 
     public TaskItemAdapter(Context mContext, ArrayList<Task> mtaskList){
         this.mtaskList = mtaskList;
@@ -44,13 +50,14 @@ public class TaskItemAdapter extends BaseAdapter implements Filterable {
     public long getItemId(int position) {return position;}
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(final int position, View convertView, ViewGroup parent){
         ViewHolder holder;
 
         if(convertView == null){
             convertView = mInflater.inflate(R.layout.task_item_layout, parent, false);
 
             holder = new ViewHolder();
+            holder.checkBox = convertView.findViewById(R.id.task_checkBox);
             holder.taskTitleTextView = convertView.findViewById(R.id.list_task_title);
             holder.taskDateTextView = convertView.findViewById(R.id.list_task_date);
             holder.taskTimeTextView = convertView.findViewById(R.id.list_task_time);
@@ -62,7 +69,7 @@ public class TaskItemAdapter extends BaseAdapter implements Filterable {
             holder = (ViewHolder)convertView.getTag();
         }
 
-
+        CheckBox checkBox = holder.checkBox;
         TextView taskTitleTextView = holder.taskTitleTextView;
         TextView taskDateTextView = holder.taskDateTextView;
         TextView taskTimeTextView = holder.taskTimeTextView;
@@ -84,6 +91,24 @@ public class TaskItemAdapter extends BaseAdapter implements Filterable {
         taskTagTextView.setText(task.getTags());
 
         taskTagTextView.setTextSize(12);
+
+        final AppDatabase database = Room.databaseBuilder(mContext, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(((CheckBox) view).isChecked()){
+                    // delete it from the dao
+                    Task selectedTask = (Task) getItem(position);
+                    taskDAO = database.getTaskDAO();
+                    taskDAO.delete(selectedTask);
+                    Toast.makeText(mContext, "Completed Task", Toast.LENGTH_LONG).show();
+                } else if(!((CheckBox) view).isChecked()){
+                    Task selectedTask = (Task) getItem(position);
+                    taskDAO = database.getTaskDAO();
+                    taskDAO.insert(selectedTask);
+                }
+            }
+        });
 
         return convertView;
 
@@ -124,6 +149,7 @@ public class TaskItemAdapter extends BaseAdapter implements Filterable {
 
 
     private static class ViewHolder{
+        public CheckBox checkBox;
         public TextView taskTitleTextView;
         public TextView taskDateTextView;
         public TextView taskTimeTextView;
