@@ -21,6 +21,7 @@ public class TaskListsDefault extends AppCompatActivity{
         final TaskList TODAY = new TaskList("Today");
         final TaskList THIS_WEEK = new TaskList("This Week");
         final TaskList ACADEMIC_CALENDAR = new TaskList("Academic Calendar");
+        final TaskList SOMEDAY = new TaskList("Someday");
 
         defaultListsNames = new ArrayList<>();
      
@@ -31,6 +32,7 @@ public class TaskListsDefault extends AppCompatActivity{
         defaultLists.add(TODAY);
         defaultLists.add(THIS_WEEK);
         defaultLists.add(ACADEMIC_CALENDAR);
+        defaultLists.add(SOMEDAY);
         // testing and placeholder
 
         // defaultLists.add(defaultLists.size()-1, THIS_WEEK2);

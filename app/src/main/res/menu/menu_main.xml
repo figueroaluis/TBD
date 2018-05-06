@@ -15,7 +15,6 @@
         android:title="View Calendar"
         app:showAsAction="never"
         />
-
     <!--<item-->
         <!--android:id="@+id/email_overview_menu_button"-->
         <!--android:title="Email My Schedule"-->

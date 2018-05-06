@@ -19,9 +19,9 @@
         android:layout_height="54dp"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:src="@android:drawable/ic_input_add"
+        android:src="@drawable/ic_add_white_24dp"
         app:backgroundTint="@color/colorPrimary"
-        android:layout_weight="1"
+        android:layout_weight="2"
         tools:layout_editor_absoluteX="313dp"
         tools:layout_editor_absoluteY="441dp" />
 

@@ -152,16 +152,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent cal_intent = new Intent(this, CalendarActivity.class);
                 startActivity(cal_intent);
                 return true;
-            /*
-            case R.id.email_overview_menu_button:
-                Intent email_intent = new Intent(this, EmailActivity.class);
-                startActivity(email_intent);
-                return true;
-            case R.id.settings_menu_button:
-                Intent settings_intent = new Intent(this, SettingsActivity.class);
-                startActivity(settings_intent);
-                return true;
-            */
+//            case R.id.email_overview_menu_button:
+//                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", "nikkikirai@gmail.com",null));
+//                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+//                emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
+//                startActivity(Intent.createChooser(emailIntent, "Send email..."));
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
