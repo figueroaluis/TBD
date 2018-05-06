@@ -188,7 +188,6 @@ public class TaskItemList extends AppCompatActivity {
         }
     }
 
-
     public void sortByImportance(MenuItem item){
         Collections.sort(taskList, IMPORTANCE_ORDER);
         adapter.notifyDataSetChanged();
