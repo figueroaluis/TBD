@@ -1,40 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/list_task_title"
+    <CheckBox
+        android:id="@+id/task_checkBox"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
+        android:focusable="false"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="100dp"
-        android:textSize="8pt"
-        android:text="Task Title" />
+        android:layout_marginTop="0dp"
+        android:buttonTint="?attr/colorAccent" />
 
-    <TextView
-        android:id="@+id/list_task_tags"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/list_task_title"
-        android:layout_marginEnd="100dp"
-        android:layout_marginStart="10dp"
-        android:text="Tags" />
+        android:layout_marginStart="0dp"
+        android:layout_toEndOf="@+id/task_checkBox">
 
-    <TextView
-        android:id="@+id/list_task_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:text="00/00/0000" />
+        <TextView
+            android:id="@+id/list_task_title"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Task Title"
+            android:textSize="8pt" />
 
-    <TextView
-        android:id="@+id/list_task_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/list_task_date"
-        android:text="00:00 a.m." />
+        <TextView
+            android:id="@+id/list_task_tags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/list_task_title"
+            android:layout_below="@+id/list_task_title"
+            android:text="Tags" />
+
+        <TextView
+            android:id="@+id/list_task_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="00/00/0000" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/list_task_date">
+
+            <TextView
+                android:id="@+id/list_task_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="00:00 a.m." />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="15dp"
+                android:layout_height="19dp"
+                android:layout_toStartOf="@+id/list_task_time"
+                app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+
+
 </RelativeLayout>

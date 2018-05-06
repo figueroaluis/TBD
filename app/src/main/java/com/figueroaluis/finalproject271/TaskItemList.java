@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -37,6 +39,9 @@ public class TaskItemList extends AppCompatActivity {
     public boolean isInFront;
     private ArrayList<TaskList> queriedLists;
     private TaskList selectedList;
+    private Task selectedTask;
+    private CheckBox checkBox;
+    private TextView listTitle;
     static final Comparator<Task> IMPORTANCE_ORDER = new Comparator<Task>(){
         public int compare(Task t1, Task t2){
             return t2.getImportance()-t1.getImportance();
@@ -70,6 +75,7 @@ public class TaskItemList extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+
         /*
         mToolBar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_action_back));
         mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -80,8 +86,11 @@ public class TaskItemList extends AppCompatActivity {
         });
         */
 
-        searchView = findViewById(R.id.search);
+        listTitle = findViewById(R.id.list_name_in_listview);
+        listTitle.setText(getIntent().getExtras().getString("PrimaryTag"));
 
+        searchView = findViewById(R.id.search);
+        checkBox = (CheckBox) findViewById(R.id.task_checkBox);
 
         AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
         taskDAO = database.getTaskDAO();
@@ -101,7 +110,7 @@ public class TaskItemList extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Task selectedTask = (Task) parent.getAdapter().getItem(position);
+                selectedTask = (Task) parent.getAdapter().getItem(position);
                 //Task selectedTask = taskList.get(position);
                 Intent detailIntent = new Intent(mContext, TaskDetailActivity.class);
 
@@ -200,6 +209,7 @@ public class TaskItemList extends AppCompatActivity {
 
     public void populateList(){
         String primaryTag = "";
+
         if(this.getIntent().getExtras().getString("PrimaryTag") != null) {
             primaryTag = this.getIntent().getExtras().getString("PrimaryTag");
         }

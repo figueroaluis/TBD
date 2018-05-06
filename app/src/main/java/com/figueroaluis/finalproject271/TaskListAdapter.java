@@ -73,7 +73,7 @@ public class TaskListAdapter extends BaseAdapter {
         taskListTitleTextView.setTextSize(18);
 
         if(taskListTitleTextView.getText().equals("All Tasks")){
-            Picasso.with(mContext).load(R.drawable.inbox_black).into(taskListIcon);
+            Picasso.with(mContext).load(R.drawable.inbox_colored).into(taskListIcon);
         } else if(taskListTitleTextView.getText().equals("Academic Calendar")){
             Picasso.with(mContext).load(R.drawable.calendar).into(taskListIcon);
         } else if(taskListTitleTextView.getText().equals("This Week")) {
