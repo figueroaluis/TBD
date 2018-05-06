@@ -24,6 +24,6 @@ public interface ListDAO {
     @Query("SELECT * FROM lists")
     public List<TaskList> getLists();
 
-
-
+    @Query("SELECT * FROM lists WHERE taskListName = :taskListName")
+    public TaskList getListByName(String taskListName);
 }
