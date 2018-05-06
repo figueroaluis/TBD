@@ -1,18 +1,25 @@
 package com.figueroaluis.finalproject271;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Created by luisfigueroa on 4/17/18.
@@ -28,6 +35,10 @@ public class TaskDetailActivity extends AppCompatActivity{
     private TaskDAO taskDAO;
     public boolean isInFrontCal;
     public boolean inInFrontList;
+    private TimePickerDialog timePicker;
+    private DatePickerDialog datePicker;
+    private String timeSelect;
+    private String dateSelect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -43,24 +54,67 @@ public class TaskDetailActivity extends AppCompatActivity{
         titleEditView.setText(selectedTask.getTitle());
         final EditText dateEditView = findViewById(R.id.task_detail_date);
         dateEditView.setText(selectedTask.getDate());
+        dateSelect = selectedTask.getDate();
         final EditText tagsEditView = findViewById(R.id.task_detail_tags);
         tagsEditView.setText(selectedTask.getTags());
         final String[] importance = {"Low Priority", "Normal", "Important", "Very Important"};
         final EditText importanceEditView = findViewById(R.id.task_detail_importance);
         final EditText timeEditView = findViewById(R.id.task_detail_time);
         timeEditView.setText(selectedTask.getTime());
+        timeSelect = selectedTask.getTime();
 
         importanceEditView.setText(importance[selectedTask.getImportance()]);
         final EditText descriptionEditView = findViewById(R.id.task_detail_description);
         descriptionEditView.setText(selectedTask.getDescription());
+
+        timeEditView.setInputType(InputType.TYPE_NULL);
+        timeEditView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                timePicker = new TimePickerDialog(TaskDetailActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+
+                        timeSelect = String.format(Locale.getDefault(),"%02d:%02d", hour, minute);
+                        timeEditView.setText(timeSelect);
+                    }
+                }, 0,0,true);
+                timePicker.show();
+            }
+        });
+
+        dateEditView.setInputType(InputType.TYPE_NULL);
+        dateEditView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(calendar.YEAR);
+                int month = calendar.get(calendar.MONTH);
+                int day = calendar.get(calendar.DAY_OF_MONTH);
+
+                datePicker = new DatePickerDialog(TaskDetailActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                        month++;
+                        dateSelect=String.format(Locale.getDefault(),"%02d-%02d-%02d", year, month, dayOfMonth);
+                        dateEditView.setText(dateSelect);
+                    }
+                }, year,month,day);
+                datePicker.show();
+            }
+        });
+
+
+
+
         editButton = findViewById(R.id.task_detail_edit_button);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectedTask.setTitle(titleEditView.getText().toString());
-                selectedTask.setDate(dateEditView.getText().toString());
+                selectedTask.setDate(dateSelect);
                 selectedTask.setTags(tagsEditView.getText().toString());
-                selectedTask.setTime(timeEditView.getText().toString());
+                selectedTask.setTime(timeSelect);
                 String importance = importanceEditView.getText().toString();
                 if(importance.equals("Low Priority")) {
                     selectedTask.setImportance(0);

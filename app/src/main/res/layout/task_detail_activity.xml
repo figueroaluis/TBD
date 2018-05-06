@@ -41,6 +41,7 @@
                 android:layout_below="@+id/task_detail_title"
                 android:layout_marginTop="10dp"
                 android:layout_toEndOf="@+id/task_detail_return_button"
+                android:focusableInTouchMode="false"
                 android:gravity="center_horizontal"
                 android:text="00/00/0000"
                 android:textSize="15sp"
@@ -56,6 +57,7 @@
                 android:layout_toEndOf="@+id/task_detail_date"
                 android:gravity="center_horizontal"
                 android:text="Time: 00:00"
+                android:focusableInTouchMode="false"
                 android:textSize="15sp" />
 
             <EditText

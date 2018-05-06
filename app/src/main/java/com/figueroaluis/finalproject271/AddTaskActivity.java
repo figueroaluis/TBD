@@ -149,23 +149,28 @@ public class AddTaskActivity extends AppCompatActivity {
 
 
     public void addTask(View view){
-        Intent addTask = new Intent(getApplicationContext(), MainActivity.class);
-        AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
-        TaskDAO taskDAO = database.getTaskDAO();
-        Task task = new Task();
-        task.setTitle(add_task_title_input.getText().toString());
-        task.setDate(dateSelect);
-        task.setDescription(add_task_description_input.getText().toString());
-        task.setAudioFileName(audioFilePath);
-        task.setImportance(importanceSelect);
-        task.setTags(add_task_tags_input.getText().toString());
-        task.setTime(timeSelect);
-        task.setPrimaryTag(primaryListNameSelect);
+        if(add_task_title_input.getText().toString().length() != 0) {
+            Intent addTask = new Intent(getApplicationContext(), MainActivity.class);
+            AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
+            TaskDAO taskDAO = database.getTaskDAO();
+            Task task = new Task();
+            task.setTitle(add_task_title_input.getText().toString());
+            task.setDate(dateSelect);
+            task.setDescription(add_task_description_input.getText().toString());
+            task.setAudioFileName(audioFilePath);
+            task.setImportance(importanceSelect);
+            task.setTags(add_task_tags_input.getText().toString());
+            task.setTime(timeSelect);
+            task.setPrimaryTag(primaryListNameSelect);
 
-        taskDAO.insert(task);
-        this.startActivity(addTask);
+            taskDAO.insert(task);
+            this.startActivity(addTask);
 
-        Toast.makeText(AddTaskActivity.this, "Successfully Added Task", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddTaskActivity.this, "Successfully Added Task", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(AddTaskActivity.this, "Please add a task title", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

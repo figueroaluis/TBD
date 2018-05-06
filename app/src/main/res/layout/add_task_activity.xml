@@ -8,7 +8,7 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -122,14 +122,13 @@
                 android:layout_height="150dp"
                 android:layout_alignStart="@+id/add_task_tags_input"
                 android:layout_alignTop="@+id/add_task_audio_button"
-                android:ems="10"
-                android:background="@drawable/textboxborder"
-                android:text="Task Description"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:gravity="top"
                 android:layout_centerHorizontal="true"
-                />
+                android:background="@drawable/textboxborder"
+                android:ems="10"
+                android:gravity="top"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
+                android:text="Task Description" />
 
             <ImageButton
                 android:id="@+id/add_task_audio_button"

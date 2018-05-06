@@ -52,11 +52,16 @@ public class AddListActivity extends AppCompatActivity {
         AppDatabase database = Room.databaseBuilder(this, AppDatabase.class, "db_tasks").allowMainThreadQueries().build();
         ListDAO listDAO = database.getListDAO();
         TaskList list = new TaskList(editText.getText().toString());
-        listDAO.insert(list);
+        if(listDAO.getListByName(list.taskListName) == null){
+            listDAO.insert(list);
+            this.startActivity(addList);
+            Toast.makeText(AddListActivity.this, "Successfully Added List", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(AddListActivity.this, "List name already exists", Toast.LENGTH_SHORT).show();
+        }
 
-        this.startActivity(addList);
 
-        Toast.makeText(AddListActivity.this, "Successfull Added List", Toast.LENGTH_SHORT).show();
     }
 
 

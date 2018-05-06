@@ -61,6 +61,9 @@ public class AudioRecordActivity extends AppCompatActivity {
                 if(ContextCompat.checkSelfPermission(mActivity, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
                     Toast.makeText(mContext, "Please grant permissions to use this feature", Toast.LENGTH_LONG).show();
                 }
+                else if(mRecorder != null){
+                    Toast.makeText(mContext, "Recording has already started", Toast.LENGTH_LONG).show();
+                }
                 else{
                     startRecording();
                 }
