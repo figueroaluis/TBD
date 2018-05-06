@@ -1,7 +1,7 @@
 package com.figueroaluis.finalproject271;
 
 import android.content.Context;
-import android.graphics.ColorSpace;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,16 +71,19 @@ public class TaskItemAdapter extends BaseAdapter implements Filterable {
         final Task task = (Task) getItem(position);
 
         taskTitleTextView.setText(task.getTitle());
+        taskTitleTextView.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
         taskTitleTextView.setTextSize(18);
 
         taskDateTextView.setText(task.getDate());
+        taskDateTextView.setTextColor(ContextCompat.getColor(mContext, R.color.colorAccentBlue));
         taskDateTextView.setTextSize(14);
 
         taskTimeTextView.setText(task.getTime());
         taskTimeTextView.setTextSize(14);
 
         taskTagTextView.setText(task.getTags());
-        taskTagTextView.setTextSize(14);
+
+        taskTagTextView.setTextSize(12);
 
         return convertView;
 

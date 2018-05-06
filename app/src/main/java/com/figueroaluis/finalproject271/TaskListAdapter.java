@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 /**
@@ -20,6 +22,7 @@ public class TaskListAdapter extends BaseAdapter {
     private Context mContext;
     private ArrayList<TaskList> mainTaskLists;
     private LayoutInflater mInflater;
+
 
     public TaskListAdapter(Context mContext, ArrayList<TaskList> mainTaskLists) {
         this.mContext = mContext;
@@ -52,6 +55,7 @@ public class TaskListAdapter extends BaseAdapter {
             holder = new ViewHolder();
 
             holder.taskListTitleTextView = convertView.findViewById(R.id.task_list_item_name);
+            holder.taskListIcon = convertView.findViewById(R.id.task_list_icon);
 
             convertView.setTag(holder);
         }
@@ -60,12 +64,29 @@ public class TaskListAdapter extends BaseAdapter {
         }
 
         TextView taskListTitleTextView = holder.taskListTitleTextView;
+        ImageView taskListIcon = holder.taskListIcon;
 
         TaskList taskList = (TaskList) getItem(position);
 
         taskListTitleTextView.setText(taskList.taskListName);
         taskListTitleTextView.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimaryDark));
         taskListTitleTextView.setTextSize(18);
+
+        if(taskListTitleTextView.getText().equals("All Tasks")){
+            Picasso.with(mContext).load(R.drawable.inbox_black).into(taskListIcon);
+        } else if(taskListTitleTextView.getText().equals("Academic Calendar")){
+            Picasso.with(mContext).load(R.drawable.calendar).into(taskListIcon);
+        } else if(taskListTitleTextView.getText().equals("This Week")) {
+            Picasso.with(mContext).load(R.drawable.thisweek).into(taskListIcon);
+        } else if(taskListTitleTextView.getText().equals("Today")) {
+            Picasso.with(mContext).load(R.drawable.today).into(taskListIcon);
+        } else if(taskListTitleTextView.getText().equals("Someday")) {
+            Picasso.with(mContext).load(R.drawable.someday).into(taskListIcon);
+        } else{
+            Picasso.with(mContext).load(R.drawable.list_slim).into(taskListIcon);
+        }
+
+
 
         return convertView;
     }

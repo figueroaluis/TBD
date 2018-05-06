@@ -21,7 +21,7 @@
         android:id="@+id/delete_list"
         android:title="Delete This List"
         app:showAsAction="never"
-        android:actionMenuTextColor="#ED2939"
+        android:color="#e21627"
         android:onClick="deleteList"/>
 
 </menu>
