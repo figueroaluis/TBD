@@ -16,11 +16,11 @@
         app:showAsAction="never"
         />
 
-    <item
-        android:id="@+id/email_overview_menu_button"
-        android:title="Email My Schedule"
-        app:showAsAction="never"
-        />
+    <!--<item-->
+        <!--android:id="@+id/email_overview_menu_button"-->
+        <!--android:title="Email My Schedule"-->
+        <!--app:showAsAction="never"-->
+        <!--/>-->
     <!--<item-->
         <!--android:id="@+id/settings_menu_button"-->
         <!--android:title="Settings"-->
