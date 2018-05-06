@@ -216,6 +216,7 @@ public class TaskItemList extends AppCompatActivity {
             month++;
             String dateSelect=String.format(Locale.getDefault(),"%02d-%02d-%02d", year, month, day);
             taskList.addAll(taskDAO.getTaskBySingleDate(dateSelect));
+            taskList.addAll(taskDAO.getTaskWithPrimaryTag(primaryTag));
         }
         else if(primaryTag.equals("This Week")){
             Calendar calendar = Calendar.getInstance();
@@ -231,6 +232,7 @@ public class TaskItemList extends AppCompatActivity {
             String dateStart=String.format(Locale.getDefault(),"%02d-%02d-%02d", startYear, startMonth, startDay);
             String dateEnd=String.format(Locale.getDefault(),"%02d-%02d-%02d", endYear, endMonth, endDay);
             taskList.addAll(taskDAO.getTaskByDateRange(dateStart,dateEnd));
+            taskList.addAll(taskDAO.getTaskWithPrimaryTag(primaryTag));
         }
         else{
             taskList.addAll(taskDAO.getTaskWithPrimaryTag(primaryTag));
